@@ -13,6 +13,9 @@
     "error": "Błąd",
     "success": "Sukces"
   },
+  "navigation": {
+    "plan-test-drive": "Zaplanuj jazdę testową"
+  },
   "cars": {
     "title": "Gama naszych samochodów",
     "type": "Typ",
@@ -48,4 +51,3 @@
     "rwd": "RWD"
   }
 }
-

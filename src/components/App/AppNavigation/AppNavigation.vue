@@ -1,11 +1,23 @@
+<script setup lang="ts">
+import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
+</script>
+
 <template>
-  <header>
+  <nav class="app-navigation">
     <div class="container">
       <div class="row">
-        <div class="col-12">
-          <h1>AppNavigation</h1>
+        <div class="col-6">
+          <img src="@/assets/logo.svg" alt="Voltura Motors" class="app-navigation__logo" />
+        </div>
+
+        <div class="col-6 justify-content-end d-flex">
+          <base-button variant="secondary">
+            {{ $t('navigation.plan-test-drive') }}
+          </base-button>
         </div>
       </div>
     </div>
-  </header>
+  </nav>
 </template>
+
+<style lang="scss" src="./AppNavigation.scss" scoped />
