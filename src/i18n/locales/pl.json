@@ -1,0 +1,51 @@
+{
+  "common": {
+    "welcome": "Witaj",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "search": "Szukaj",
+    "filter": "Filtruj",
+    "close": "Zamknij",
+    "confirm": "Potwierdź",
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "success": "Sukces"
+  },
+  "cars": {
+    "title": "Gama naszych samochodów",
+    "type": "Typ",
+    "drive": "Napęd",
+    "price": "Cena",
+    "range": "Zasięg",
+    "details": "Szczegóły modelu",
+    "version": "Wersja",
+    "color": "Kolor",
+    "addons": "Dodatki",
+    "specifications": "Kluczowe cechy",
+    "acceleration": "0-100 km/h",
+    "maxSpeed": "Maksymalna prędkość",
+    "charging": "Ładowanie",
+    "trunkCapacity": "Pojemność bagażnika",
+    "warranty": "Gwarancja",
+    "findDealer": "Znajdź dealera",
+    "findSalesPoint": "Znajdź punkt sprzedaży",
+    "from": "od",
+    "km": "km",
+    "years": "lat",
+    "liters": "L"
+  },
+  "filters": {
+    "suv": "SUV",
+    "sedan": "Sedan",
+    "electric": "Elektryczny",
+    "hybrid": "Hybrydowy",
+    "petrol": "Benzyna",
+    "diesel": "Diesel",
+    "awd": "AWD",
+    "fwd": "FWD",
+    "rwd": "RWD"
+  }
+}
+

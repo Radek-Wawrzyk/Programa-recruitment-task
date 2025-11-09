@@ -1,0 +1,157 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "model": "Voltura ZX 2025",
+      "type": "SUV",
+      "drive": "AWD",
+      "driveType": "Electric",
+      "priceFrom": 100999,
+      "range": 400,
+      "versions": [
+        {
+          "name": "Basic",
+          "price": 129999
+        },
+        {
+          "name": "Sport",
+          "price": 149999
+        },
+        {
+          "name": "Performance",
+          "price": 169999
+        }
+      ],
+      "colors": [
+        {
+          "name": "Black",
+          "code": "#1a1a1a"
+        },
+        {
+          "name": "Green",
+          "code": "#2d5016"
+        }
+      ],
+      "addons": ["Winter wheels", "Accessories"],
+      "specifications": {
+        "acceleration": "5.8s",
+        "maxSpeed": 210,
+        "charging": "120 kW DC",
+        "trunkCapacity": 520,
+        "warranty": "5 years"
+      },
+      "images": [
+        {
+          "type": "main",
+          "url": "/images/voltura-zx-main.jpg"
+        },
+        {
+          "type": "thumbnail",
+          "url": "/images/voltura-zx-thumb1.jpg"
+        },
+        {
+          "type": "thumbnail",
+          "url": "/images/voltura-zx-thumb2.jpg"
+        },
+        {
+          "type": "thumbnail",
+          "url": "/images/voltura-zx-thumb3.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "model": "Voltura PX 2025",
+      "type": "SUV",
+      "drive": "AWD",
+      "driveType": "Electric",
+      "priceFrom": 120999,
+      "range": 500,
+      "versions": [
+        {
+          "name": "Basic",
+          "price": 149999
+        },
+        {
+          "name": "Sport",
+          "price": 169999
+        },
+        {
+          "name": "Performance",
+          "price": 189999
+        }
+      ],
+      "colors": [
+        {
+          "name": "Black",
+          "code": "#1a1a1a"
+        },
+        {
+          "name": "Green",
+          "code": "#2d5016"
+        }
+      ],
+      "addons": ["Winter wheels", "Accessories"],
+      "specifications": {
+        "acceleration": "5.2s",
+        "maxSpeed": 220,
+        "charging": "150 kW DC",
+        "trunkCapacity": 580,
+        "warranty": "5 years"
+      },
+      "images": [
+        {
+          "type": "main",
+          "url": "/images/voltura-px-main.jpg"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "model": "Voltura SX 2025",
+      "type": "SUV",
+      "drive": "AWD",
+      "driveType": "Electric",
+      "priceFrom": 99999,
+      "range": 300,
+      "versions": [
+        {
+          "name": "Basic",
+          "price": 119999
+        },
+        {
+          "name": "Sport",
+          "price": 139999
+        },
+        {
+          "name": "Performance",
+          "price": 159999
+        }
+      ],
+      "colors": [
+        {
+          "name": "Black",
+          "code": "#1a1a1a"
+        },
+        {
+          "name": "Green",
+          "code": "#2d5016"
+        }
+      ],
+      "addons": ["Winter wheels", "Accessories"],
+      "specifications": {
+        "acceleration": "6.5s",
+        "maxSpeed": 200,
+        "charging": "100 kW DC",
+        "trunkCapacity": 480,
+        "warranty": "5 years"
+      },
+      "images": [
+        {
+          "type": "main",
+          "url": "/images/voltura-sx-main.jpg"
+        }
+      ]
+    }
+  ]
+}
