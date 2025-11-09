@@ -1,15 +1,28 @@
 .vehicle-filters {
-  gap: 1.25rem;
-  padding: 0 2.1875rem 0 1.3125rem;
+  gap: 1rem;
+  padding: 1rem 2.1875rem 1rem 1.3125rem;
   display: flex;
   align-items: center;
   height: 72px;
 
+  &__fields {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    height: 100%;
+  }
+
   &__field {
+    position: relative;
+
     &--price {
       display: flex;
       align-items: center;
       gap: 0.625rem;
+
+      :deep(.base-input__field) {
+        width: 80px;
+      }
     }
   }
 
@@ -20,14 +33,24 @@
 
   &__button {
     flex-shrink: 0;
-    min-width: 120px;
+    min-width: 135px;
+    margin: 0 0 0 auto;
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1024px) {
   .vehicle-filters {
-    &__field {
-      min-width: 120px;
+    flex-direction: column;
+    height: auto;
+    padding: 1.5rem 1rem;
+
+    &__fields {
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    &__button {
+      width: 100%;
     }
   }
 }

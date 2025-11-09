@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, provide, onMounted, onUnmounted, type Ref } from 'vue'
+import { getUUID } from '@/utils'
 
 interface SelectOption {
   value: string | number
@@ -36,7 +37,7 @@ const emit = defineEmits<{
   change: [value: string | number]
 }>()
 
-const selectId = props.id || `select-${Math.random().toString(36).substr(2, 9)}`
+const selectId = props.id || `select-${getUUID()}`
 const isOpen = ref(false)
 const selectedValue = ref<string | number | undefined>(props.value)
 const selectedLabel = ref<string>('')

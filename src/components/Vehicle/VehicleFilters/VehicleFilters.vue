@@ -31,32 +31,34 @@ const handleFilter = () => {
 
 <template>
   <base-card class="vehicle-filters">
-    <BaseSelect v-model="filters.type" :label="$t('cars.type')" class="vehicle-filters__field">
-      <BaseSelectOption value="suv">{{ $t('filters.suv') }}</BaseSelectOption>
-      <BaseSelectOption value="sedan">{{ $t('filters.sedan') }}</BaseSelectOption>
-    </BaseSelect>
+    <div class="vehicle-filters__fields">
+      <BaseSelect v-model="filters.type" :label="$t('cars.type')" class="vehicle-filters__field">
+        <BaseSelectOption value="suv">{{ $t('filters.suv') }}</BaseSelectOption>
+        <BaseSelectOption value="sedan">{{ $t('filters.sedan') }}</BaseSelectOption>
+      </BaseSelect>
 
-    <BaseSelect
-      v-model="filters.driveType"
-      :label="$t('cars.drive')"
-      class="vehicle-filters__field"
-    >
-      <BaseSelectOption value="electric">{{ $t('filters.electric') }}</BaseSelectOption>
-      <BaseSelectOption value="hybrid">{{ $t('filters.hybrid') }}</BaseSelectOption>
-      <BaseSelectOption value="petrol">{{ $t('filters.petrol') }}</BaseSelectOption>
-      <BaseSelectOption value="diesel">{{ $t('filters.diesel') }}</BaseSelectOption>
-    </BaseSelect>
+      <BaseSelect
+        v-model="filters.driveType"
+        :label="$t('cars.drive')"
+        class="vehicle-filters__field"
+      >
+        <BaseSelectOption value="electric">{{ $t('filters.electric') }}</BaseSelectOption>
+        <BaseSelectOption value="hybrid">{{ $t('filters.hybrid') }}</BaseSelectOption>
+        <BaseSelectOption value="petrol">{{ $t('filters.petrol') }}</BaseSelectOption>
+        <BaseSelectOption value="diesel">{{ $t('filters.diesel') }}</BaseSelectOption>
+      </BaseSelect>
 
-    <div class="vehicle-filters__field vehicle-filters__field--price">
-      <BaseInput
-        v-model="filters.priceMin"
-        :label="$t('cars.price')"
-        class="vehicle-filters__price-input"
-      />
+      <div class="vehicle-filters__field vehicle-filters__field--price">
+        <BaseInput
+          v-model="filters.priceMin"
+          :label="$t('cars.price')"
+          class="vehicle-filters__price-input"
+        />
 
-      <span class="vehicle-filters__separator">-</span>
+        <span class="vehicle-filters__separator">-</span>
 
-      <BaseInput v-model="filters.priceMax" class="vehicle-filters__price-input" />
+        <BaseInput v-model="filters.priceMax" class="vehicle-filters__price-input" />
+      </div>
     </div>
 
     <BaseButton variant="secondary" class="vehicle-filters__button" @click="handleFilter">

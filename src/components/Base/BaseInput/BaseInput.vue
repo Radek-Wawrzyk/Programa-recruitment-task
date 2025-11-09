@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { getUUID } from '@/utils'
+
 interface Props {
   id?: string
   label?: string
@@ -21,7 +23,7 @@ const emit = defineEmits<{
   change: [event: Event]
 }>()
 
-const inputId = props.id || `input-${Math.random().toString(36).substr(2, 9)}`
+const inputId = props.id || `input-${getUUID()}`
 
 const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement
