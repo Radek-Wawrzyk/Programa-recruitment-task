@@ -2,7 +2,7 @@
   margin-bottom: 2.625rem;
 
   &__banner {
-    background-color: var(--bs-primary);
+    background-color: var(--primary);
     border-radius: 1rem;
     padding: 1rem 2rem 1rem 1.5rem;
     display: flex;
@@ -14,8 +14,8 @@
 
   &__title {
     font-size: 1.375rem;
-    font-weight: 700;
-    color: var(--bs-text-light);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-light);
     margin: 0;
   }
 

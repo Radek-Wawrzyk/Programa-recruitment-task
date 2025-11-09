@@ -4,18 +4,12 @@ import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
 
 <template>
   <nav class="app-navigation">
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <img src="@/assets/logo.svg" alt="Voltura Motors" class="app-navigation__logo" />
-        </div>
+    <div class="container app-navigation__container">
+      <img src="@/assets/logo.svg" alt="Voltura Motors" class="app-navigation__logo" />
 
-        <div class="col-6 justify-content-end d-flex">
-          <base-button variant="secondary">
-            {{ $t('navigation.plan-test-drive') }}
-          </base-button>
-        </div>
-      </div>
+      <base-button variant="secondary">
+        {{ $t('navigation.plan-test-drive') }}
+      </base-button>
     </div>
   </nav>
 </template>

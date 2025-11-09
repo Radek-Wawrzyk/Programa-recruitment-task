@@ -5,16 +5,12 @@ import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
 <template>
   <section class="home-cta">
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="home-cta__banner">
-            <h2 class="home-cta__title">{{ $t('home.cta.title') }}</h2>
+      <div class="home-cta__banner">
+        <h2 class="home-cta__title">{{ $t('home.cta.title') }}</h2>
 
-            <BaseButton variant="light" size="lg" class="home-cta__button">
-              {{ $t('home.cta.button') }}
-            </BaseButton>
-          </div>
-        </div>
+        <BaseButton variant="light" size="lg" class="home-cta__button">
+          {{ $t('home.cta.button') }}
+        </BaseButton>
       </div>
     </div>
   </section>

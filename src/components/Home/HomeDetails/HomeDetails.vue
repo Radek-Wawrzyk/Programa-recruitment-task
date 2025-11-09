@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+
 import BaseAccordion from '@/components/Base/BaseAccordion/BaseAccordion.vue'
 import BaseAccordionItem from '@/components/Base/BaseAccordion/BaseAccordionItem.vue'
 
