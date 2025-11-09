@@ -63,6 +63,26 @@
       "title": "Poczuj przyszłość jazdy z Voltura.",
       "button": "Umów się na jazdę próbną"
     },
+    "details": {
+      "title": "Gama naszych samochodów",
+      "intro-1": "Voltura oferuje kompleksowe rozwiązania flotowe i korporacyjne, łącząc oszczędności z nowoczesnym wizerunkiem.",
+      "intro-2": "Nasze samochody elektryczne sprawdzą się zarówno w dużych flotach, jak i małych firmach, dla których liczy się ekonomia,",
+      "intro-3": "niezawodność i dbałość o środowisko.",
+      "accordion": {
+        "benefits": {
+          "question": "Jakie korzyści daje flota elektryczna Voltura?",
+          "answer": "Niższe koszty eksploatacji, prosta obsługa serwisowa i wizerunek marki dbającej o środowisko."
+        },
+        "longDistance": {
+          "question": "Czy samochody Voltura sprawdzą się w trasach długodystansowych?",
+          "answer": "Tak, nasze samochody elektryczne oferują imponujący zasięg i szybkie ładowanie, co czyni je idealnymi do długich tras."
+        },
+        "service": {
+          "question": "Jakie wsparcie serwisowe oferujecie dla flot?",
+          "answer": "Oferujemy kompleksowe wsparcie serwisowe dla flot, w tym przeglądy, naprawy i konserwację, zapewniając maksymalną dostępność pojazdów."
+        }
+      }
+    },
     "info": {
       "title": "Postaw na innowację. Postaw na Voltura."
     }
