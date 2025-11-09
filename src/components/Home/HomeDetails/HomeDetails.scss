@@ -17,17 +17,15 @@
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1024px) {
   .home-details {
-    padding: 2rem 0;
-
     &__title {
       font-size: 2rem;
     }
   }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 768px) {
   .home-details {
     &__title {
       font-size: 1.75rem;
