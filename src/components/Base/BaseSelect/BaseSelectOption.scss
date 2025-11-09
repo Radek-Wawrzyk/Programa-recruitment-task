@@ -1,0 +1,25 @@
+.base-select-option {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover:not(&--disabled) {
+    background-color: var(--background-tertiary);
+  }
+
+  &--selected {
+    background-color: var(--background-tertiary);
+    font-weight: 600;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
