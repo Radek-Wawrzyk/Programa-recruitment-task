@@ -23,7 +23,8 @@
     "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
     "vue": "^3.5.22",
-    "vue-i18n": "^11.1.12"
+    "vue-i18n": "^11.1.12",
+    "vue-router": "^4.6.3"
   },
   "devDependencies": {
     "@prettier/plugin-oxc": "^0.0.4",

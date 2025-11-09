@@ -1,0 +1,13 @@
+.app-footer {
+  background-color: var(--bs-body-bg);
+  height: 80px;
+  border-top: 1px solid var(--bs-border-color);
+  display: flex;
+  align-items: center;
+
+  &__text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+}
