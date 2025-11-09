@@ -49,5 +49,18 @@
     "awd": "AWD",
     "fwd": "FWD",
     "rwd": "RWD"
+  },
+  "home": {
+    "header": {
+      "title": "Moc spotyka efektywność",
+      "subtitle": "Odkryj nową linię Voltura e-Line - zaprojektowaną z myślą o mieście. i długich trasach",
+      "paragraph1": "Voltura e-Line to zupełnie nowa generacja samochodów elektrycznych, łączących dynamiczne osiągi z wyjątkową energooszczędnością.",
+      "paragraph2": "Zaprojektowana w oparciu o najnowsze technologie, oferuje nie tylko imponujący zasięg, ale też komfort jazdy na najwyższym poziomie. Nowoczesne systemy wspomagania kierowcy sprawiają, że każda podróż staje się bezpieczniejsza i bardziej intuicyjna.",
+      "paragraph3": "Elegancka sylwetka i dopracowane detale nadwozia podkreślają charakter premium marki Voltura.",
+      "ctaButton": "Sprawdź szczegóły"
+    },
+    "info": {
+      "title": "Postaw na innowację. Postaw na Voltura."
+    }
   }
 }

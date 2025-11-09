@@ -1,13 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HomeHeader from '@/components/Home/HomeHeader/HomeHeader.vue'
+import HomeInfo from '@/components/Home/HomeInfo/HomeInfo.vue'
+</script>
 
 <template>
-  <div class="home">
-    <h1>Home</h1>
+  <div class="home-view">
+    <HomeHeader />
+    <HomeInfo />
   </div>
 </template>
 
 <style scoped>
-.home {
-  padding: 2rem;
+.home-view {
+  padding: 0;
 }
 </style>
