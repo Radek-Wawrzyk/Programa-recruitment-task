@@ -1,0 +1,11 @@
+.home-offer {
+  margin-bottom: 2.5rem;
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--bs-text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 100%;
+  }
+}
