@@ -18,14 +18,19 @@ const emptyText = computed(() => {
 
 <template>
   <div class="vehicle-list">
-    <div class="vehicle-list__grid" v-if="!isLoading && vehicles.length > 0">
+    <TransitionGroup
+      name="vehicle-list"
+      class="vehicle-list__grid"
+      tag="div"
+      v-if="!isLoading && vehicles.length > 0"
+    >
       <VehicleCard
         v-for="vehicle in vehicles"
         :key="vehicle.id"
         :id="vehicle.id"
         :vehicle="vehicle"
       />
-    </div>
+    </TransitionGroup>
 
     <p class="vehicle-list__empty" v-else>{{ emptyText }}</p>
   </div>

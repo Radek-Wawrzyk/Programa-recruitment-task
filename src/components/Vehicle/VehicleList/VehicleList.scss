@@ -27,3 +27,24 @@
     grid-template-columns: 1fr;
   }
 }
+
+.vehicle-list-move,
+.vehicle-list-enter-active,
+.vehicle-list-leave-active {
+  transition: all 0.3s ease;
+}
+
+.vehicle-list-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.vehicle-list-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+  position: absolute;
+}
+
+.vehicle-list-leave-active {
+  position: absolute;
+}
