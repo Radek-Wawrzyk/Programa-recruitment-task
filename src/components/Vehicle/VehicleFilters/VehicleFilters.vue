@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 import type { VehicleFilters } from '@/types/Vehicle'
 import { useI18n } from 'vue-i18n'
 
@@ -8,18 +8,28 @@ import BaseCard from '@/components/Base/BaseCard/BaseCard.vue'
 import BaseInput from '@/components/Base/BaseInput/BaseInput.vue'
 import BaseSelect from '@/components/Base/BaseSelect/BaseSelect.vue'
 
+interface Props {
+  filters: VehicleFilters
+}
+
+const props = defineProps<Props>()
+
 const emit = defineEmits<{
   filter: [filters: VehicleFilters]
 }>()
 
 const { t } = useI18n()
 
-const filters = ref<VehicleFilters>({
-  type: 'suv',
-  driveType: 'electric',
-  priceMin: 0,
-  priceMax: 100,
-})
+const localFilters = ref<VehicleFilters>({ ...props.filters })
+
+// Synchronizuj z props (gdy zmienią się z zewnątrz)
+watch(
+  () => props.filters,
+  (newFilters) => {
+    localFilters.value = { ...newFilters }
+  },
+  { deep: true },
+)
 
 const vehicleTypes = computed(() => {
   return [
@@ -38,7 +48,7 @@ const vehicleDrives = computed(() => {
 })
 
 const handleFilter = () => {
-  emit('filter', filters.value)
+  emit('filter', { ...localFilters.value })
 }
 </script>
 
@@ -46,14 +56,14 @@ const handleFilter = () => {
   <base-card class="vehicle-filters">
     <div class="vehicle-filters__fields">
       <BaseSelect
-        v-model="filters.type"
+        v-model="localFilters.type"
         :label="$t('vehicle.type')"
         :options="vehicleTypes"
         class="vehicle-filters__field"
       />
 
       <BaseSelect
-        v-model="filters.driveType"
+        v-model="localFilters.driveType"
         :label="$t('vehicle.drive')"
         :options="vehicleDrives"
         class="vehicle-filters__field"
@@ -61,14 +71,19 @@ const handleFilter = () => {
 
       <div class="vehicle-filters__field vehicle-filters__field--price">
         <BaseInput
-          v-model="filters.priceMin"
+          v-model.number="localFilters.priceMin"
           :label="$t('vehicle.price')"
+          type="number"
           class="vehicle-filters__price-input"
         />
 
         <span class="vehicle-filters__separator">-</span>
 
-        <BaseInput v-model="filters.priceMax" class="vehicle-filters__price-input" />
+        <BaseInput
+          v-model.number="localFilters.priceMax"
+          type="number"
+          class="vehicle-filters__price-input"
+        />
       </div>
     </div>
 

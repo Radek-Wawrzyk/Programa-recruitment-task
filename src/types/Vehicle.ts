@@ -3,8 +3,8 @@ type VehicleDrive = 'electric' | 'hybrid' | 'petrol' | 'diesel'
 type VehicleDriveType = 'AWD' | 'FWD' | 'RWD'
 
 interface VehicleFilters {
-  type: VehicleType
-  driveType: VehicleDrive
+  type?: VehicleType
+  driveType?: VehicleDrive
   priceMin: number
   priceMax: number
 }

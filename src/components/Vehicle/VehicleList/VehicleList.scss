@@ -1,8 +1,18 @@
 .vehicle-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(368px, 1fr));
-  gap: 3rem;
   margin-top: 1rem;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(368px, 1fr));
+    gap: 3rem;
+  }
+
+  &__empty {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-tertiary);
+    margin-top: 2rem;
+  }
 }
 
 @media (max-width: 1024px) {

@@ -6,10 +6,10 @@ import type { VehicleFilters as VehicleFiltersType } from '@/types/Vehicle'
 import VehicleFilters from '@/components/Vehicle/VehicleFilters/VehicleFilters.vue'
 import VehicleList from '@/components/Vehicle/VehicleList/VehicleList.vue'
 
-const { fetchVehicles, getFilteredVehicles } = useVehivles()
+const { fetchVehicles, filteredVehicles, setFilters, filters } = useVehivles()
 
 const handleFilter = (newFilters: VehicleFiltersType) => {
-  console.log(newFilters)
+  setFilters(newFilters)
 }
 
 onMounted(async () => {
@@ -21,8 +21,8 @@ onMounted(async () => {
   <section class="home-offer">
     <div class="container">
       <h2 class="home-offer__title">{{ $t('home.offers.title') }}</h2>
-      <VehicleFilters @filter="handleFilter" />
-      <VehicleList :vehicles="getFilteredVehicles()" />
+      <VehicleFilters :filters="filters" @filter="handleFilter" />
+      <VehicleList :vehicles="filteredVehicles" />
     </div>
   </section>
 </template>

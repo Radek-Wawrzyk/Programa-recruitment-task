@@ -122,8 +122,8 @@
       "id": 3,
       "model": "Voltura SX 2025",
       "type": "suv",
-      "drive": "electric",
-      "driveType": "AWD",
+      "drive": "diesel",
+      "driveType": "RWD",
       "priceFrom": 99999,
       "range": 300,
       "versions": [

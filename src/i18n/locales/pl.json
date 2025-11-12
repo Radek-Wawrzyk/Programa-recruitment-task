@@ -41,6 +41,7 @@
     "type": "Typ",
     "drive": "Napęd",
     "price": "Cena",
+    "empty": "Brak samochodów spełniających kryteria filtrów",
     "filters": {
       "priceMin": "Cena min",
       "priceMax": "Cena max",
