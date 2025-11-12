@@ -27,6 +27,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
+const currentMainImage = ref<string | null>(null)
 const activeOffer = ref<ActiveOffer>({
   version: null,
   color: null,
@@ -68,7 +69,7 @@ const addonOptions = computed(() => {
 })
 
 const mainImage = computed(() => {
-  return props.vehicle?.images.find((image) => image.type === 'main')?.url
+  return currentMainImage.value || props.vehicle?.images.find((image) => image.type === 'main')?.url
 })
 
 const thumbnailImages = computed(() => {
@@ -115,6 +116,10 @@ const handleClose = () => {
   emit('close')
 }
 
+const selectImage = (imageUrl: string) => {
+  currentMainImage.value = imageUrl
+}
+
 // INFO: Select default version, color and addons (always first option)
 watch(
   () => props.vehicle,
@@ -123,6 +128,17 @@ watch(
       activeOffer.value.version = vehicle.versions[0]?.name || null
       activeOffer.value.color = vehicle.colors[0]?.code || null
       activeOffer.value.addons = []
+    }
+  },
+  { immediate: true },
+)
+
+// INFO: Reset main image when vehicle changes
+watch(
+  () => props.vehicle,
+  (vehicle) => {
+    if (vehicle) {
+      currentMainImage.value = vehicle.images.find((image) => image.type === 'main')?.url || null
     }
   },
   { immediate: true },
@@ -145,13 +161,18 @@ watch(
           </div>
 
           <div v-if="thumbnailImages.length > 0" class="vehicle-details-modal__thumbnails">
-            <img
+            <button
               v-for="(thumb, index) in thumbnailImages"
               :key="index"
-              :src="thumb.url"
-              :alt="`${vehicle.model} - zdjęcie ${index + 1}`"
-              class="vehicle-details-modal__thumbnail"
-            />
+              type="button"
+              :class="[
+                'vehicle-details-modal__thumbnail',
+                { 'vehicle-details-modal__thumbnail--active': mainImage === thumb.url },
+              ]"
+              @click="selectImage(thumb.url)"
+            >
+              <img :src="thumb.url" :alt="`${vehicle.model} - zdjęcie ${index + 1}`" />
+            </button>
           </div>
         </div>
 
