@@ -1,19 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import type { VehicleType, VehicleDrive } from '@/types'
+import type { VehicleFilters } from '@/types/Vehicle'
 import { useI18n } from 'vue-i18n'
 
 import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
 import BaseCard from '@/components/Base/BaseCard/BaseCard.vue'
 import BaseInput from '@/components/Base/BaseInput/BaseInput.vue'
 import BaseSelect from '@/components/Base/BaseSelect/BaseSelect.vue'
-
-interface VehicleFilters {
-  type: VehicleType
-  driveType: VehicleDrive
-  priceMin: number
-  priceMax: number
-}
 
 const emit = defineEmits<{
   filter: [filters: VehicleFilters]

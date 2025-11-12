@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import type { VehicleFilters as VehicleFiltersType } from '@/types/Vehicle'
 import VehicleFilters from '@/components/Vehicle/VehicleFilters/VehicleFilters.vue'
 import VehicleList from '@/components/Vehicle/VehicleList/VehicleList.vue'
 
@@ -83,7 +84,7 @@ const filteredCars = computed(() => {
   return result
 })
 
-const handleFilter = (newFilters: Filters) => {
+const handleFilter = (newFilters: VehicleFiltersType) => {
   console.log(newFilters)
   filters.value = newFilters
 }
