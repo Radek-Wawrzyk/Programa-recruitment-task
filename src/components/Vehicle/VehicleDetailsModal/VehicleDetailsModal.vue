@@ -28,6 +28,8 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 const currentMainImage = ref<string | null>(null)
+const currentThumbnails = ref<string[]>([])
+
 const activeOffer = ref<ActiveOffer>({
   version: null,
   color: null,
@@ -73,7 +75,10 @@ const mainImage = computed(() => {
 })
 
 const thumbnailImages = computed(() => {
-  return props.vehicle?.images.filter((image) => image.type === 'thumbnail') || []
+  return currentThumbnails.value.length > 0
+    ? currentThumbnails.value
+    : props.vehicle?.images.filter((image) => image.type === 'thumbnail').map((img) => img.url) ||
+        []
 })
 
 const keyFeatures = computed(() => {
@@ -116,8 +121,17 @@ const handleClose = () => {
   emit('close')
 }
 
-const selectImage = (imageUrl: string) => {
+const selectImage = (imageUrl: string, thumbnailIndex: number) => {
+  const previousMainImage =
+    currentMainImage.value || props.vehicle?.images.find((image) => image.type === 'main')?.url
+
   currentMainImage.value = imageUrl
+
+  if (previousMainImage && currentThumbnails.value.length > 0) {
+    const newThumbnails = [...currentThumbnails.value]
+    newThumbnails[thumbnailIndex] = previousMainImage
+    currentThumbnails.value = newThumbnails
+  }
 }
 
 // INFO: Select default version, color and addons (always first option)
@@ -133,12 +147,14 @@ watch(
   { immediate: true },
 )
 
-// INFO: Reset main image when vehicle changes
+// INFO: Reset main image and thumbnails when vehicle changes
 watch(
   () => props.vehicle,
   (vehicle) => {
     if (vehicle) {
       currentMainImage.value = vehicle.images.find((image) => image.type === 'main')?.url || null
+      currentThumbnails.value =
+        vehicle.images.filter((image) => image.type === 'thumbnail').map((img) => img.url) || []
     }
   },
   { immediate: true },
@@ -162,16 +178,16 @@ watch(
 
           <div v-if="thumbnailImages.length > 0" class="vehicle-details-modal__thumbnails">
             <button
-              v-for="(thumb, index) in thumbnailImages"
+              v-for="(thumbUrl, index) in thumbnailImages"
               :key="index"
               type="button"
               :class="[
                 'vehicle-details-modal__thumbnail',
-                { 'vehicle-details-modal__thumbnail--active': mainImage === thumb.url },
+                { 'vehicle-details-modal__thumbnail--active': mainImage === thumbUrl },
               ]"
-              @click="selectImage(thumb.url)"
+              @click="selectImage(thumbUrl, index)"
             >
-              <img :src="thumb.url" :alt="`${vehicle.model} - zdjęcie ${index + 1}`" />
+              <img :src="thumbUrl" :alt="`${vehicle.model} - zdjęcie ${index + 1}`" />
             </button>
           </div>
         </div>
