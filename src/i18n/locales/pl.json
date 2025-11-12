@@ -14,26 +14,6 @@
   "navigation": {
     "plan-test-drive": "Zaplanuj jazdę testową"
   },
-  "cars": {
-    "title": "Gama naszych samochodów",
-
-    "details": "Szczegóły modelu",
-    "version": "Wersja",
-    "color": "Kolor",
-    "addons": "Dodatki",
-    "specifications": "Kluczowe cechy",
-    "acceleration": "0-100 km/h",
-    "maxSpeed": "Maksymalna prędkość",
-    "charging": "Ładowanie",
-    "trunkCapacity": "Pojemność bagażnika",
-    "warranty": "Gwarancja",
-    "findDealer": "Znajdź dealera",
-    "findSalesPoint": "Znajdź punkt sprzedaży",
-    "from": "od",
-    "km": "km",
-    "years": "lat",
-    "liters": "L"
-  },
   "vehicle": {
     "check": "Sprawdź",
     "from": "od",
@@ -42,6 +22,13 @@
     "drive": "Napęd",
     "price": "Cena",
     "empty": "Brak samochodów spełniających kryteria filtrów",
+    "findDealer": "Znajdź dealera",
+    "version": "Wersja",
+    "color": "Kolor",
+    "addons": "Dodatki",
+    "winterTires": "Koła zimowe",
+    "accessories": "Akcesoria",
+    "findSalesPoint": "Znajdź punkt sprzedaży",
     "filters": {
       "priceMin": "Cena min",
       "priceMax": "Cena max",
@@ -54,7 +41,14 @@
       "awd": "AWD",
       "fwd": "FWD",
       "rwd": "RWD"
-    }
+    },
+    "specifications": "Kluczowe cechy",
+    "acceleration": "0-100 km/h",
+    "maxSpeed": "Maksymalna prędkość",
+    "charging": "Ładowanie",
+    "trunkCapacity": "Pojemność bagażnika",
+    "warranty": "Gwarancja",
+    "years": "lat"
   },
   "filters": {
     "suv": "SUV",

@@ -9,6 +9,10 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const emit = defineEmits<{
+  'check-details': [vehicle: Vehicle]
+}>()
+
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('pl-PL').format(price)
 }
@@ -16,6 +20,10 @@ const formatPrice = (price: number) => {
 const mainImage = computed(() => {
   return props.vehicle.images.find((image) => image.type === 'main')?.url
 })
+
+const handleCheckClick = () => {
+  emit('check-details', props.vehicle)
+}
 </script>
 
 <template>
@@ -35,7 +43,7 @@ const mainImage = computed(() => {
           {{ vehicle.driveType }} • {{ vehicle.range }} km {{ $t('vehicle.range') }}
         </p>
 
-        <BaseButton variant="primary" size="sm">
+        <BaseButton variant="primary" size="sm" @click="handleCheckClick">
           {{ $t('vehicle.check') }}
         </BaseButton>
       </div>

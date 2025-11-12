@@ -24,12 +24,16 @@
       ],
       "colors": [
         {
-          "name": "Black",
-          "code": "#1a1a1a"
+          "name": "Dark",
+          "code": "#1F2937"
+        },
+        {
+          "name": "Light",
+          "code": "#F3F4F6"
         },
         {
           "name": "Green",
-          "code": "#2d5016"
+          "code": "#28483B"
         }
       ],
       "addons": ["winter-tires", "accessories"],
@@ -88,7 +92,7 @@
         },
         {
           "name": "Green",
-          "code": "#2d5016"
+          "code": "#28483B"
         }
       ],
       "addons": ["winter-tires", "accessories"],
@@ -142,12 +146,12 @@
       ],
       "colors": [
         {
-          "name": "Black",
-          "code": "#1a1a1a"
+          "name": "Dark",
+          "code": "#1F2937"
         },
         {
-          "name": "Green",
-          "code": "#2d5016"
+          "name": "Light",
+          "code": "#F3F4F6"
         }
       ],
       "addons": ["winter-tires", "accessories"],

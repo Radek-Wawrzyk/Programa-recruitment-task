@@ -1,0 +1,45 @@
+.base-color-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.base-color-selector__label {
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+}
+
+.base-color-selector__options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.base-color-selector__option {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--border-radius-small);
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  padding: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px var(--background-secondary);
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+
+  &--selected {
+    border: 1px solid var(--primary);
+    box-shadow:
+      0 0 0 1px var(--background-secondary),
+      0 0 0 3px var(--primary);
+    transform: scale(1.05);
+  }
+}

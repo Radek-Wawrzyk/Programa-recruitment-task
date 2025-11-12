@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import VehicleCard from '@/components/Vehicle/VehicleCard/VehicleCard.vue'
+import { ref, computed } from 'vue'
 import type { Vehicle } from '@/types/Vehicle'
-import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import VehicleCard from '@/components/Vehicle/VehicleCard/VehicleCard.vue'
+import VehicleDetailsModal from '@/components/Vehicle/VehicleDetailsModal/VehicleDetailsModal.vue'
 
 const props = defineProps<{
   vehicles: Vehicle[]
@@ -11,9 +12,22 @@ const props = defineProps<{
 
 const { t } = useI18n()
 
+const isModalOpen = ref(false)
+const selectedVehicle = ref<Vehicle | null>(null)
+
 const emptyText = computed(() => {
   return props.isLoading ? t('common.loading') : t('vehicle.empty')
 })
+
+const handleCheckDetails = (vehicle: Vehicle) => {
+  selectedVehicle.value = vehicle
+  isModalOpen.value = true
+}
+
+const handleCloseModal = () => {
+  isModalOpen.value = false
+  selectedVehicle.value = null
+}
 </script>
 
 <template>
@@ -27,13 +41,20 @@ const emptyText = computed(() => {
       <VehicleCard
         v-for="vehicle in vehicles"
         :key="vehicle.id"
-        :id="vehicle.id"
         :vehicle="vehicle"
+        @check-details="handleCheckDetails"
       />
     </TransitionGroup>
 
     <p class="vehicle-list__empty" v-else>{{ emptyText }}</p>
   </div>
+
+  <VehicleDetailsModal
+    v-model="isModalOpen"
+    :vehicle="selectedVehicle"
+    @close="handleCloseModal"
+    show-footer
+  />
 </template>
 
 <style scoped lang="scss" src="./VehicleList.scss" />
