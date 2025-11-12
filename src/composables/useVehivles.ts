@@ -1,18 +1,38 @@
 import { ref } from 'vue'
+import type { Vehicle } from '@/types/Vehicle'
+import { vehicleService } from '@/api/services/vehicle'
+
+const vehicles = ref<Vehicle[]>([])
+const isLoading = ref(false)
 
 const useVehivles = () => {
-  const vehicles = ref<Vehicle[]>([])
+  const fetchVehicles = async () => {
+    isLoading.value = true
 
-  const getVehicles = async () => {
-    const response = await fetch('/api/vehicles')
-    const data = await response.json()
-    vehicles.value = data
+    try {
+      const response = await vehicleService.getAllVehicles()
+      vehicles.value = response
+    } catch (error) {
+      console.error(error)
+    } finally {
+      isLoading.value = false
+    }
   }
 
-  const getVehicles = () => {}
+  const getVehicleById = (id: number) => {
+    return vehicles.value.find((vehicle) => vehicle.id === id)
+  }
+
+  const getFilteredVehicles = () => {
+    return vehicles.value
+  }
 
   return {
     vehicles,
+    isLoading,
+    fetchVehicles,
+    getVehicleById,
+    getFilteredVehicles,
   }
 }
 

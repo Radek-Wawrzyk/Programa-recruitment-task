@@ -1,38 +1,39 @@
 <script setup lang="ts">
 import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
+import type { Vehicle } from '@/types/Vehicle'
+import { computed } from 'vue'
 
 interface Props {
-  id: number
-  model: string
-  priceFrom: number
-  drive: string
-  range: number
-  imageUrl?: string
+  vehicle: Vehicle
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('pl-PL').format(price)
 }
+
+const mainImage = computed(() => {
+  return props.vehicle.images.find((image) => image.type === 'main')?.url
+})
 </script>
 
 <template>
   <div class="vehicle-card">
     <div class="vehicle-card__image-wrapper">
-      <img
-        :src="imageUrl || '/images/placeholder-car.jpg'"
-        :alt="model"
-        class="vehicle-card__image"
-      />
+      <img :src="mainImage" :alt="vehicle.model" class="vehicle-card__image" />
     </div>
 
     <div class="vehicle-card__content">
-      <h3 class="vehicle-card__model">{{ model }}</h3>
-      <p class="vehicle-card__price">{{ $t('vehicle.from') }} {{ formatPrice(priceFrom) }} zł</p>
+      <h3 class="vehicle-card__model">{{ vehicle.model }}</h3>
+      <p class="vehicle-card__price">
+        {{ $t('vehicle.from') }} {{ formatPrice(vehicle.priceFrom) }} zł
+      </p>
 
       <div class="vehicle-card__specs-wrapper">
-        <p class="vehicle-card__specs">{{ drive }} • {{ range }} km {{ $t('vehicle.range') }}</p>
+        <p class="vehicle-card__specs">
+          {{ vehicle.driveType }} • {{ vehicle.range }} km {{ $t('vehicle.range') }}
+        </p>
 
         <BaseButton variant="primary" size="sm">
           {{ $t('vehicle.check') }}
