@@ -7,16 +7,29 @@
   }
 
   &__content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 660px 1fr;
     gap: 2.25rem;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__images {
     display: flex;
     flex-direction: column;
-    min-width: 660px;
-    width: 660px;
     gap: 1.25rem;
+    width: 100%;
+    max-width: 660px;
+
+    @media (max-width: 1200px) {
+      max-width: 100%;
+    }
   }
 
   &__main-image {
@@ -73,7 +86,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 100%;
   }
 
   &__price {
@@ -92,37 +104,6 @@
     color: var(--text-primary);
   }
 
-  &__specs {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 1rem;
-    background-color: var(--background-primary);
-    border-radius: var(--border-radius-small);
-  }
-
-  &__spec {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  &__spec-label {
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-  }
-
-  &__spec-value {
-    font-size: 1rem;
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-  }
-
-  &__section {
-    padding: 0.625rem 1rem 1rem;
-  }
-
   &__section-title {
     font-size: 1rem;
     font-weight: var(--font-weight-bold);
@@ -130,31 +111,6 @@
     margin: 0;
     padding: 0 0 0.5rem 0;
     border-bottom: 1px solid var(--border-color);
-  }
-
-  &__versions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  &__version {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem;
-    background-color: var(--background-primary);
-    border-radius: var(--border-radius-small);
-  }
-
-  &__version-name {
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-  }
-
-  &__version-price {
-    font-weight: var(--font-weight-bold);
-    color: var(--primary);
   }
 
   &__specifications {
