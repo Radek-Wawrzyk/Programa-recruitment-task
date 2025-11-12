@@ -26,13 +26,18 @@ const formatPrice = (price: number) => {
         class="vehicle-card__image"
       />
     </div>
+
     <div class="vehicle-card__content">
       <h3 class="vehicle-card__model">{{ model }}</h3>
-      <p class="vehicle-card__price">{{ $t('cars.from') }} {{ formatPrice(priceFrom) }} zł</p>
-      <p class="vehicle-card__specs">
-        {{ drive }} • {{ range }}{{ $t('cars.km') }} {{ $t('cars.range') }}
-      </p>
-      <BaseButton variant="primary" class="vehicle-card__button"> Sprawdź </BaseButton>
+      <p class="vehicle-card__price">{{ $t('vehicle.from') }} {{ formatPrice(priceFrom) }} zł</p>
+
+      <div class="vehicle-card__specs-wrapper">
+        <p class="vehicle-card__specs">{{ drive }} • {{ range }} km {{ $t('vehicle.range') }}</p>
+
+        <BaseButton variant="primary" size="sm">
+          {{ $t('vehicle.check') }}
+        </BaseButton>
+      </div>
     </div>
   </div>
 </template>

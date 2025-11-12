@@ -39,6 +39,11 @@
     "years": "lat",
     "liters": "L"
   },
+  "vehicle": {
+    "check": "Sprawdź",
+    "from": "od",
+    "range": "range"
+  },
   "filters": {
     "suv": "SUV",
     "sedan": "Sedan",

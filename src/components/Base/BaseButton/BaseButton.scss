@@ -9,3 +9,45 @@
     color: var(--bs-primary);
   }
 }
+
+.base-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-small);
+  border: none;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  height: 44px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:focus {
+    outline-color: var(--primary);
+    outline-width: 2px;
+    outline-style: solid;
+    outline-offset: 1px;
+  }
+
+  &--primary {
+    background-color: var(--primary);
+    color: var(--text-light);
+  }
+
+  &--secondary {
+    background-color: var(--secondary);
+    color: var(--text-light);
+  }
+
+  &--sm {
+    height: 22px;
+    padding: 0.25rem 1.1rem;
+    font-size: 0.75rem;
+    border-radius: var(--border-radius);
+  }
+}

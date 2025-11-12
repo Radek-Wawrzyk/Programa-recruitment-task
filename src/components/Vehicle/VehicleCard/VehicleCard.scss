@@ -1,19 +1,13 @@
 .vehicle-card {
-  background-color: #ffffff;
-  border-radius: 0.5rem;
+  background-color: var(--background-secondary);
+  border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s ease;
-
-  &:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  border: 1px solid var(--border-color);
 
   &__image-wrapper {
     width: 100%;
     height: 200px;
     overflow: hidden;
-    background-color: #f3f4f6;
   }
 
   &__image {
@@ -23,32 +17,36 @@
   }
 
   &__content {
-    padding: 1.25rem;
+    padding: 1rem;
   }
 
   &__model {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--bs-text-primary);
-    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin: 0 0 0.125rem 0;
     line-height: 1.2;
   }
 
   &__price {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--bs-text-dark);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
     margin: 0 0 0.5rem 0;
   }
 
   &__specs {
-    font-size: 0.875rem;
-    color: var(--bs-text-tertiary);
-    margin: 0 0 1rem 0;
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+
+  &__specs-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__button {
     width: 100%;
   }
 }
-

@@ -10,11 +10,9 @@ interface Car {
   images?: Array<{ type: string; url: string }>
 }
 
-interface Props {
+defineProps<{
   cars: Car[]
-}
-
-defineProps<Props>()
+}>()
 </script>
 
 <template>

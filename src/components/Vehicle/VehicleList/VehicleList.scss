@@ -1,20 +1,19 @@
 .vehicle-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(368px, 1fr));
+  gap: 3rem;
+  margin-top: 1rem;
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1024px) {
   .vehicle-list {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1rem;
   }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 576px) {
   .vehicle-list {
     grid-template-columns: 1fr;
   }
 }
-

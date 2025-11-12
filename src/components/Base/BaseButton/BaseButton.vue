@@ -1,57 +1,41 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface Props {
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'light'
-    | 'dark'
-    | 'link'
-  size?: 'sm' | 'md' | 'lg'
-  type?: 'button' | 'submit' | 'reset'
-  disabled?: boolean
-  outline?: boolean
-  block?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  variant: 'primary',
-  size: 'md',
-  type: 'button',
-  disabled: false,
-  outline: false,
-  block: false,
-})
+const props = withDefaults(
+  defineProps<{
+    variant?: 'primary' | 'secondary' | 'tertiary' | 'light'
+    size?: 'sm' | 'md' | 'lg'
+    type?: 'button' | 'submit' | 'reset'
+    disabled?: boolean
+    outline?: boolean
+    block?: boolean
+  }>(),
+  {
+    variant: 'primary',
+    size: 'md',
+    type: 'button',
+    disabled: false,
+    block: false,
+  },
+)
 
 const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
 
 const buttonClasses = computed(() => {
-  const classes = ['btn']
+  const classes = ['base-button']
 
-  // Wariant
-  if (props.outline) {
-    classes.push(`btn-outline-${props.variant}`)
-  } else {
-    classes.push(`btn-${props.variant}`)
-  }
+  classes.push(`base-button--${props.variant}`)
 
-  // Rozmiar
   if (props.size === 'sm') {
-    classes.push('btn-sm')
+    classes.push('base-button--sm')
   } else if (props.size === 'lg') {
-    classes.push('btn-lg')
+    classes.push('base-button--lg')
   }
 
-  // Block (full width)
   if (props.block) {
-    classes.push('w-100')
+    classes.push('base-button--full-width')
   }
 
   return classes.join(' ')
