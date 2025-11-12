@@ -78,35 +78,13 @@ const filters = ref<Filters>({
 })
 
 const filteredCars = computed(() => {
-  let result = [...mockCars]
-
-  // Filtrowanie po typie
-  if (filters.value.type) {
-    result = result.filter((car) => car.type === filters.value.type)
-  }
-
-  // Filtrowanie po napędzie (driveType)
-  if (filters.value.driveType) {
-    const driveTypeMap: Record<string, string> = {
-      Elektryczny: 'Electric',
-      Hybrydowy: 'Hybrid',
-      Benzyna: 'Petrol',
-      Diesel: 'Diesel',
-    }
-    const mappedDriveType = driveTypeMap[filters.value.driveType] || filters.value.driveType
-    result = result.filter((car) => car.driveType === mappedDriveType)
-  }
-
-  // Filtrowanie po cenie
-  const priceMin = parseInt(filters.value.priceMin.replace(/\s/g, '')) || 0
-  const priceMax = parseInt(filters.value.priceMax.replace(/\s/g, '')) || Infinity
-
-  result = result.filter((car) => car.priceFrom >= priceMin && car.priceFrom <= priceMax)
+  const result = [...mockCars]
 
   return result
 })
 
 const handleFilter = (newFilters: Filters) => {
+  console.log(newFilters)
   filters.value = newFilters
 }
 </script>

@@ -9,19 +9,14 @@
     "filter": "Filtruj",
     "close": "Zamknij",
     "confirm": "Potwierdź",
-    "loading": "Ładowanie...",
-    "error": "Błąd",
-    "success": "Sukces"
+    "loading": "Ładowanie..."
   },
   "navigation": {
     "plan-test-drive": "Zaplanuj jazdę testową"
   },
   "cars": {
     "title": "Gama naszych samochodów",
-    "type": "Typ",
-    "drive": "Napęd",
-    "price": "Cena",
-    "range": "Zasięg",
+
     "details": "Szczegóły modelu",
     "version": "Wersja",
     "color": "Kolor",
@@ -42,7 +37,23 @@
   "vehicle": {
     "check": "Sprawdź",
     "from": "od",
-    "range": "range"
+    "range": "range",
+    "type": "Typ",
+    "drive": "Napęd",
+    "price": "Cena",
+    "filters": {
+      "priceMin": "Cena min",
+      "priceMax": "Cena max",
+      "suv": "SUV",
+      "sedan": "Sedan",
+      "electric": "Elektryczny",
+      "hybrid": "Hybrydowy",
+      "petrol": "Benzyna",
+      "diesel": "Diesel",
+      "awd": "AWD",
+      "fwd": "FWD",
+      "rwd": "RWD"
+    }
   },
   "filters": {
     "suv": "SUV",

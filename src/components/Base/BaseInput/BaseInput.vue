@@ -6,7 +6,7 @@ interface Props {
   label?: string
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'
   placeholder?: string
-  value?: string | number
+  modelValue?: string | number
   disabled?: boolean
   required?: boolean
 }
@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  'update:value': [value: string | number]
+  'update:modelValue': [value: string | number]
   input: [event: Event]
   change: [event: Event]
 }>()
@@ -27,7 +27,7 @@ const inputId = props.id || `input-${getUUID()}`
 
 const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement
-  emit('update:value', target.value)
+  emit('update:modelValue', target.value)
   emit('input', event)
 }
 
@@ -46,7 +46,7 @@ const handleChange = (event: Event) => {
       :id="inputId"
       :type="type"
       :placeholder="placeholder"
-      :value="value"
+      :value="modelValue"
       :disabled="disabled"
       :required="required"
       class="base-input__field"

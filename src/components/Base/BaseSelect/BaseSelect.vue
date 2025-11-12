@@ -1,55 +1,56 @@
 <script setup lang="ts">
-import { ref, provide, onMounted, onUnmounted, type Ref } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { getUUID } from '@/utils'
 
-interface SelectOption {
+export interface SelectOption {
   value: string | number
   label: string
   disabled?: boolean
 }
 
-interface SelectContext {
-  selectedValue: Ref<string | number | undefined>
-  selectedLabel: Ref<string>
-  isOpen: Ref<boolean>
-  selectValue: (value: string | number, label: string) => void
-  toggleOpen: () => void
-  close: () => void
-  registerOption: (option: SelectOption) => void
-}
-
-interface Props {
-  id?: string
-  label?: string
-  placeholder?: string
-  value?: string | number
-  disabled?: boolean
-  required?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  required: false,
-})
+const props = withDefaults(
+  defineProps<{
+    id?: string
+    label?: string
+    placeholder?: string
+    modelValue?: string | number
+    options: SelectOption[]
+    disabled?: boolean
+    required?: boolean
+  }>(),
+  {
+    disabled: false,
+    required: false,
+  },
+)
 
 const emit = defineEmits<{
-  'update:value': [value: string | number]
+  'update:modelValue': [value: string | number]
   change: [value: string | number]
 }>()
 
 const selectId = props.id || `select-${getUUID()}`
 const isOpen = ref(false)
-const selectedValue = ref<string | number | undefined>(props.value)
-const selectedLabel = ref<string>('')
-const options = ref<SelectOption[]>([])
 const selectRef = ref<HTMLElement | null>(null)
 
-const selectValue = (value: string | number, label: string) => {
-  selectedValue.value = value
-  selectedLabel.value = label
-  emit('update:value', value)
-  emit('change', value)
-  close()
+const selectedValue = computed(() => props.modelValue)
+
+const selectedLabel = computed(() => {
+  if (!selectedValue.value) return ''
+  const option = props.options.find((opt) => opt.value === selectedValue.value)
+  return option?.label || ''
+})
+
+const isSelected = (value: string | number) => {
+  return selectedValue.value === value
+}
+
+const selectValue = (value: string | number) => {
+  if (isOpen.value) {
+    emit('update:modelValue', value)
+    emit('change', value)
+    close()
+  }
 }
 
 const toggleOpen = () => {
@@ -62,30 +63,11 @@ const close = () => {
   isOpen.value = false
 }
 
-const registerOption = (option: SelectOption) => {
-  options.value.push(option)
-  if (option.value === props.value) {
-    selectedLabel.value = option.label
-  }
-}
-
 const handleClickOutside = (event: MouseEvent) => {
   if (selectRef.value && !selectRef.value.contains(event.target as Node)) {
     close()
   }
 }
-
-const context: SelectContext = {
-  selectedValue,
-  selectedLabel,
-  isOpen,
-  selectValue,
-  toggleOpen,
-  close,
-  registerOption,
-}
-
-provide<SelectContext>('select', context)
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
@@ -101,6 +83,7 @@ onUnmounted(() => {
     <label v-if="label" :for="selectId" class="base-select__label">
       {{ label }}
     </label>
+
     <div class="base-select__wrapper">
       <button
         :id="selectId"
@@ -113,9 +96,24 @@ onUnmounted(() => {
           {{ selectedLabel || placeholder || 'Wybierz...' }}
         </span>
       </button>
-      <div v-if="isOpen" class="base-select__dropdown">
-        <slot />
-      </div>
+
+      <ul v-if="isOpen" class="base-select__dropdown">
+        <li
+          v-for="option in options"
+          :key="option.value"
+          :class="[
+            'base-select__option',
+            {
+              'base-select__option--selected': isSelected(option.value),
+              'base-select__option--disabled': option.disabled,
+            },
+          ]"
+        >
+          <button type="button" :disabled="option.disabled" @click="selectValue(option.value)">
+            {{ option.label }}
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
