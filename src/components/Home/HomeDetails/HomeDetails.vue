@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-import BaseAccordion from '@/components/Base/BaseAccordion/BaseAccordion.vue'
-import BaseAccordionItem from '@/components/Base/BaseAccordion/BaseAccordionItem.vue'
+import BaseAccordion from '@/components/Base/BaseAccordion/BaseAccordion.vue';
+import BaseAccordionItem from '@/components/Base/BaseAccordion/BaseAccordionItem.vue';
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 const accordionItems = computed(() => [
   {
@@ -26,7 +26,7 @@ const accordionItems = computed(() => [
     content: t('home.details.accordion.service.answer'),
     defaultExpanded: false,
   },
-])
+]);
 </script>
 
 <template>

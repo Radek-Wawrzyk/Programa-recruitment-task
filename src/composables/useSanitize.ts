@@ -1,4 +1,4 @@
-import DOMPurify from 'dompurify'
+import DOMPurify from 'dompurify';
 
 const useSanitize = () => {
   const sanitize = (html: string) => {
@@ -26,10 +26,10 @@ const useSanitize = () => {
         'th',
       ],
       ALLOWED_ATTR: ['href', 'src', 'alt', 'width', 'height', 'class', 'style'],
-    })
-  }
+    });
+  };
 
-  return { sanitize }
-}
+  return { sanitize };
+};
 
-export { useSanitize }
+export { useSanitize };

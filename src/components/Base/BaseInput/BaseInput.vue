@@ -1,40 +1,40 @@
 <script setup lang="ts">
-import { getUUID } from '@/utils'
+import { getUUID } from '@/utils';
 
 const props = withDefaults(
   defineProps<{
-    id?: string
-    label?: string
-    type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'
-    placeholder?: string
-    modelValue?: string | number
-    disabled?: boolean
-    required?: boolean
+    id?: string;
+    label?: string;
+    type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search';
+    placeholder?: string;
+    modelValue?: string | number;
+    disabled?: boolean;
+    required?: boolean;
   }>(),
   {
     type: 'text',
     disabled: false,
     required: false,
   },
-)
+);
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string | number]
-  input: [event: Event]
-  change: [event: Event]
-}>()
+  'update:modelValue': [value: string | number];
+  input: [event: Event];
+  change: [event: Event];
+}>();
 
-const inputId = props.id || `input-${getUUID()}`
+const inputId = props.id || `input-${getUUID()}`;
 
 const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  emit('update:modelValue', target.value)
-  emit('input', event)
-}
+  const target = event.target as HTMLInputElement;
+  emit('update:modelValue', target.value);
+  emit('input', event);
+};
 
 const handleChange = (event: Event) => {
-  emit('change', event)
-}
+  emit('change', event);
+};
 </script>
 
 <template>

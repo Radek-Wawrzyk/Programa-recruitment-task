@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AppNavigation from '@/components/App/AppNavigation/AppNavigation.vue'
-import AppFooter from '@/components/App/AppFooter/AppFooter.vue'
+import AppNavigation from '@/components/App/AppNavigation/AppNavigation.vue';
+import AppFooter from '@/components/App/AppFooter/AppFooter.vue';
 </script>
 
 <template>

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 const props = withDefaults(
   defineProps<{
-    variant?: 'primary' | 'secondary' | 'tertiary' | 'light'
-    size?: 'sm' | 'md' | 'lg'
-    type?: 'button' | 'submit' | 'reset'
-    disabled?: boolean
-    outline?: boolean
-    block?: boolean
+    variant?: 'primary' | 'secondary' | 'tertiary' | 'light';
+    size?: 'sm' | 'md' | 'lg';
+    type?: 'button' | 'submit' | 'reset';
+    disabled?: boolean;
+    outline?: boolean;
+    block?: boolean;
   }>(),
   {
     variant: 'primary',
@@ -17,35 +17,35 @@ const props = withDefaults(
     disabled: false,
     block: false,
   },
-)
+);
 
 const emit = defineEmits<{
-  click: [event: MouseEvent]
-}>()
+  click: [event: MouseEvent];
+}>();
 
 const buttonClasses = computed(() => {
-  const classes = ['base-button']
+  const classes = ['base-button'];
 
-  classes.push(`base-button--${props.variant}`)
+  classes.push(`base-button--${props.variant}`);
 
   if (props.size === 'sm') {
-    classes.push('base-button--sm')
+    classes.push('base-button--sm');
   } else if (props.size === 'lg') {
-    classes.push('base-button--lg')
+    classes.push('base-button--lg');
   }
 
   if (props.block) {
-    classes.push('base-button--full-width')
+    classes.push('base-button--full-width');
   }
 
-  return classes.join(' ')
-})
+  return classes.join(' ');
+});
 
 const handleClick = (event: MouseEvent) => {
   if (!props.disabled) {
-    emit('click', event)
+    emit('click', event);
   }
-}
+};
 </script>
 
 <template>

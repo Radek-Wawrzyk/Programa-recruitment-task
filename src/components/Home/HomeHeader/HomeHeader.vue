@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
-import BaseCard from '@/components/Base/BaseCard/BaseCard.vue'
+import BaseButton from '@/components/Base/BaseButton/BaseButton.vue';
+import BaseCard from '@/components/Base/BaseCard/BaseCard.vue';
 
-import { useSanitize } from '@/composables/useSanitize'
+import { useSanitize } from '@/composables/useSanitize';
 
-const { sanitize } = useSanitize()
+const { sanitize } = useSanitize();
 </script>
 
 <template>

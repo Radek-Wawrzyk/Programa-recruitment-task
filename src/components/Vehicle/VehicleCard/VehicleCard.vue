@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
+import BaseButton from '@/components/Base/BaseButton/BaseButton.vue';
 
-import type { Vehicle } from '@/types/Vehicle'
-import { computed } from 'vue'
-import { usePrice } from '@/composables/usePrice'
+import type { Vehicle } from '@/types/Vehicle';
+import { computed } from 'vue';
+import { usePrice } from '@/composables/usePrice';
 
 const props = defineProps<{
-  vehicle: Vehicle
-}>()
+  vehicle: Vehicle;
+}>();
 
 const emit = defineEmits<{
-  'check-details': [vehicle: Vehicle]
-}>()
+  'check-details': [vehicle: Vehicle];
+}>();
 
-const { formatPrice } = usePrice()
+const { formatPrice } = usePrice();
 
 const mainImage = computed(() => {
-  return props.vehicle.images.find((image) => image.type === 'main')?.url
-})
+  return props.vehicle.images.find((image) => image.type === 'main')?.url;
+});
 
 const handleCheckClick = () => {
-  emit('check-details', props.vehicle)
-}
+  emit('check-details', props.vehicle);
+};
 </script>
 
 <template>

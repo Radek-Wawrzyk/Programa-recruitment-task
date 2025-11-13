@@ -1,88 +1,90 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-import type { Vehicle } from '@/types/Vehicle'
-import { useI18n } from 'vue-i18n'
-import { useCacheVehicle } from '@/composables/useCacheVehicle'
-import { usePrice } from '@/composables/usePrice'
+import { ref, computed, watch } from 'vue';
+import type { Vehicle } from '@/types/Vehicle';
+import { useI18n } from 'vue-i18n';
+import { useCacheVehicle } from '@/composables/useCacheVehicle';
+import { usePrice } from '@/composables/usePrice';
 
-import BaseModal from '@/components/Base/BaseModal/BaseModal.vue'
-import BaseCard from '@/components/Base/BaseCard/BaseCard.vue'
-import BaseColorSelector from '@/components/Base/BaseColorSelector/BaseColorSelector.vue'
-import BaseCategorySelector from '@/components/Base/BaseCategorySelector/BaseCategorySelector.vue'
-import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
+import BaseModal from '@/components/Base/BaseModal/BaseModal.vue';
+import BaseCard from '@/components/Base/BaseCard/BaseCard.vue';
+import BaseColorSelector from '@/components/Base/BaseColorSelector/BaseColorSelector.vue';
+import BaseCategorySelector from '@/components/Base/BaseCategorySelector/BaseCategorySelector.vue';
+import BaseButton from '@/components/Base/BaseButton/BaseButton.vue';
 
 interface ActiveOffer {
-  version: string | null
-  color: string | null
-  addons: string[]
+  version: string | null;
+  color: string | null;
+  addons: string[];
 }
 
 const props = defineProps<{
-  modelValue: boolean
-  vehicle: Vehicle | null
-}>()
+  modelValue: boolean;
+  vehicle: Vehicle | null;
+}>();
 
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean]
-  close: []
-}>()
+  'update:modelValue': [value: boolean];
+  close: [];
+}>();
 
-const { t } = useI18n()
-const { getVehicleFromCache, saveVehicle } = useCacheVehicle()
-const { formatPrice } = usePrice()
+const { t } = useI18n();
+const { getVehicleFromCache, saveVehicle } = useCacheVehicle();
+const { formatPrice } = usePrice();
 
-const currentMainImage = ref<string | null>(null)
-const currentThumbnails = ref<string[]>([])
+const currentMainImage = ref<string | null>(null);
+const currentThumbnails = ref<string[]>([]);
 
 const activeOffer = ref<ActiveOffer>({
   version: null,
   color: null,
   addons: [],
-})
+});
 
 const currentPrice = computed(() => {
   if (!props.vehicle || !activeOffer.value.version) {
-    return props.vehicle?.priceFrom || 0
+    return props.vehicle?.priceFrom || 0;
   }
 
   const selectedVersion = props.vehicle.versions.find(
     (version) => version.name === activeOffer.value.version,
-  )
-  return selectedVersion?.price || props.vehicle.priceFrom
-})
+  );
+  return selectedVersion?.price || props.vehicle.priceFrom;
+});
 
 const versionOptions = computed(() => {
-  if (!props.vehicle) return []
+  if (!props.vehicle) return [];
 
   return props.vehicle.versions.map((version) => ({
     id: version.name,
     label: version.name,
     value: version.price,
-  }))
-})
+  }));
+});
 
 const addonOptions = computed(() => {
-  if (!props.vehicle || !props.vehicle.addons) return []
+  if (!props.vehicle || !props.vehicle.addons) return [];
 
   return props.vehicle.addons.map((addon) => ({
     id: addon,
     label: t(`vehicle.${addon === 'winter-tires' ? 'winterTires' : 'accessories'}`),
-  }))
-})
+  }));
+});
 
 const mainImage = computed(() => {
-  return currentMainImage.value || props.vehicle?.images.find((image) => image.type === 'main')?.url
-})
+  return (
+    currentMainImage.value || props.vehicle?.images.find((image) => image.type === 'main')?.url
+  );
+});
 
 const thumbnailImages = computed(() => {
   return currentThumbnails.value.length > 0
     ? currentThumbnails.value
     : props.vehicle?.images.filter((image) => image.type === 'thumbnail').map((img) => img.url) ||
-        []
-})
+        [];
+});
 
 const keyFeatures = computed(() => {
-  if (!props.vehicle) return []
+  if (!props.vehicle) return [];
 
   const features = [
     {
@@ -93,13 +95,13 @@ const keyFeatures = computed(() => {
       label: t('vehicle.maxSpeed'),
       value: `${props.vehicle.specification.maxSpeed} km/h`,
     },
-  ]
+  ];
 
   if (props.vehicle.specification.charging) {
     features.push({
       label: t('vehicle.charging'),
       value: `${props.vehicle.specification.charging} kW DC`,
-    })
+    });
   }
 
   features.push(
@@ -111,18 +113,18 @@ const keyFeatures = computed(() => {
       label: t('vehicle.warranty'),
       value: `${props.vehicle.specification.warranty} ${t('vehicle.years')}`,
     },
-  )
+  );
 
-  return features
-})
+  return features;
+});
 
 const handleClose = () => {
-  emit('update:modelValue', false)
-  emit('close')
-}
+  emit('update:modelValue', false);
+  emit('close');
+};
 
 const handleSaveOffer = () => {
-  if (!props.vehicle) return
+  if (!props.vehicle) return;
 
   saveVehicle(props.vehicle.id, {
     model: props.vehicle?.model,
@@ -130,55 +132,55 @@ const handleSaveOffer = () => {
     color: activeOffer.value.color,
     addons: activeOffer.value.addons,
     price: currentPrice.value,
-  })
-}
+  });
+};
 
 const selectImage = (imageUrl: string, thumbnailIndex: number) => {
   const previousMainImage =
-    currentMainImage.value || props.vehicle?.images.find((image) => image.type === 'main')?.url
+    currentMainImage.value || props.vehicle?.images.find((image) => image.type === 'main')?.url;
 
-  currentMainImage.value = imageUrl
+  currentMainImage.value = imageUrl;
 
   if (previousMainImage && currentThumbnails.value.length > 0) {
-    const newThumbnails = [...currentThumbnails.value]
-    newThumbnails[thumbnailIndex] = previousMainImage
-    currentThumbnails.value = newThumbnails
+    const newThumbnails = [...currentThumbnails.value];
+    newThumbnails[thumbnailIndex] = previousMainImage;
+    currentThumbnails.value = newThumbnails;
   }
-}
+};
 
 // INFO: Select default version, color and addons (always first option) or load from cache
 watch(
   () => props.vehicle,
   (vehicle) => {
     if (vehicle) {
-      const cachedOffer = getVehicleFromCache(vehicle.id)
+      const cachedOffer = getVehicleFromCache(vehicle.id);
 
       if (cachedOffer) {
-        activeOffer.value.version = cachedOffer.version
-        activeOffer.value.color = cachedOffer.color
-        activeOffer.value.addons = cachedOffer.addons
+        activeOffer.value.version = cachedOffer.version;
+        activeOffer.value.color = cachedOffer.color;
+        activeOffer.value.addons = cachedOffer.addons;
       } else {
-        activeOffer.value.version = vehicle.versions[0]?.name || null
-        activeOffer.value.color = vehicle.colors[0]?.code || null
-        activeOffer.value.addons = []
+        activeOffer.value.version = vehicle.versions[0]?.name || null;
+        activeOffer.value.color = vehicle.colors[0]?.code || null;
+        activeOffer.value.addons = [];
       }
     }
   },
   { immediate: true },
-)
+);
 
 // INFO: Reset main image and thumbnails when vehicle changes
 watch(
   () => props.vehicle,
   (vehicle) => {
     if (vehicle) {
-      currentMainImage.value = vehicle.images.find((image) => image.type === 'main')?.url || null
+      currentMainImage.value = vehicle.images.find((image) => image.type === 'main')?.url || null;
       currentThumbnails.value =
-        vehicle.images.filter((image) => image.type === 'thumbnail').map((img) => img.url) || []
+        vehicle.images.filter((image) => image.type === 'thumbnail').map((img) => img.url) || [];
     }
   },
   { immediate: true },
-)
+);
 </script>
 
 <template>

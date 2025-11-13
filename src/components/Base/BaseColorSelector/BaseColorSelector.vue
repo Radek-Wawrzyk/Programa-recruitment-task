@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 const props = withDefaults(
   defineProps<{
-    modelValue: string | null
-    options: { name: string; code: string }[]
-    label?: string
+    modelValue: string | null;
+    options: { name: string; code: string }[];
+    label?: string;
   }>(),
   {
     label: 'Kolor',
   },
-)
+);
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string | null]
-}>()
+  'update:modelValue': [value: string | null];
+}>();
 
 const selectedColor = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
-})
+});
 
 const selectColor = (colorCode: string) => {
-  selectedColor.value = colorCode
-}
+  selectedColor.value = colorCode;
+};
 </script>
 
 <template>

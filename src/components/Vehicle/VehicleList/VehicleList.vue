@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { Vehicle } from '@/types/Vehicle'
-import { useI18n } from 'vue-i18n'
+import { ref, computed } from 'vue';
+import type { Vehicle } from '@/types/Vehicle';
+import { useI18n } from 'vue-i18n';
 
-import VehicleCard from '@/components/Vehicle/VehicleCard/VehicleCard.vue'
-import VehicleDetailsModal from '@/components/Vehicle/VehicleDetailsModal/VehicleDetailsModal.vue'
+import VehicleCard from '@/components/Vehicle/VehicleCard/VehicleCard.vue';
+import VehicleDetailsModal from '@/components/Vehicle/VehicleDetailsModal/VehicleDetailsModal.vue';
 
 const props = defineProps<{
-  vehicles: Vehicle[]
-  isLoading: boolean
-}>()
+  vehicles: Vehicle[];
+  isLoading: boolean;
+}>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 
-const isModalOpen = ref(false)
-const selectedVehicle = ref<Vehicle | null>(null)
+const isModalOpen = ref(false);
+const selectedVehicle = ref<Vehicle | null>(null);
 
 const fallbackText = computed(() => {
-  return props.isLoading ? t('common.loading') : t('vehicle.empty')
-})
+  return props.isLoading ? t('common.loading') : t('vehicle.empty');
+});
 
 const handleCheckDetails = (vehicle: Vehicle) => {
-  selectedVehicle.value = vehicle
-  isModalOpen.value = true
-}
+  selectedVehicle.value = vehicle;
+  isModalOpen.value = true;
+};
 
 const handleCloseModal = () => {
-  isModalOpen.value = false
-  selectedVehicle.value = null
-}
+  isModalOpen.value = false;
+  selectedVehicle.value = null;
+};
 </script>
 
 <template>

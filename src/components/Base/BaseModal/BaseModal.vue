@@ -1,90 +1,90 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch, computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { onMounted, onUnmounted, watch, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
+import BaseButton from '@/components/Base/BaseButton/BaseButton.vue';
 
 const props = withDefaults(
   defineProps<{
-    modelValue: boolean
-    title?: string
-    closeOnBackdrop?: boolean
-    closeOnEscape?: boolean
-    showFooter?: boolean
-    cancelLabel?: string
-    confirmLabel?: string
+    modelValue: boolean;
+    title?: string;
+    closeOnBackdrop?: boolean;
+    closeOnEscape?: boolean;
+    showFooter?: boolean;
+    cancelLabel?: string;
+    confirmLabel?: string;
   }>(),
   {
     closeOnBackdrop: true,
     closeOnEscape: true,
     showFooter: false,
   },
-)
+);
 
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean]
-  close: []
-  cancel: []
-  confirm: []
-}>()
+  'update:modelValue': [value: boolean];
+  close: [];
+  cancel: [];
+  confirm: [];
+}>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 const close = () => {
-  emit('update:modelValue', false)
-  emit('close')
-}
+  emit('update:modelValue', false);
+  emit('close');
+};
 
 const handleCancel = () => {
-  emit('cancel')
-  close()
-}
+  emit('cancel');
+  close();
+};
 
 const handleConfirm = () => {
-  emit('confirm')
-}
+  emit('confirm');
+};
 
 const handleBackdropClick = (event: MouseEvent) => {
   if (props.closeOnBackdrop && event.target === event.currentTarget) {
-    close()
+    close();
   }
-}
+};
 
 const handleEscape = (event: KeyboardEvent) => {
   if (props.closeOnEscape && event.key === 'Escape' && props.modelValue) {
-    close()
+    close();
   }
-}
+};
 
 const cancelText = computed(() => {
-  return props.cancelLabel || t('common.cancel')
-})
+  return props.cancelLabel || t('common.cancel');
+});
 
 const confirmText = computed(() => {
-  return props.confirmLabel || t('common.confirm')
-})
+  return props.confirmLabel || t('common.confirm');
+});
 
 watch(
   () => props.modelValue,
   (isOpen) => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = ''
+      document.body.style.overflow = '';
     }
   },
-)
+);
 
 onMounted(() => {
   if (props.closeOnEscape) {
-    document.addEventListener('keydown', handleEscape)
+    document.addEventListener('keydown', handleEscape);
   }
-})
+});
 
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleEscape)
-  document.body.style.overflow = ''
-})
+  document.removeEventListener('keydown', handleEscape);
+  document.body.style.overflow = '';
+});
 </script>
 
 <template>

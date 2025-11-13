@@ -1,40 +1,40 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
-import type { VehicleFilters } from '@/types/Vehicle'
-import { useI18n } from 'vue-i18n'
+import { ref, watch, computed } from 'vue';
+import type { VehicleFilters } from '@/types/Vehicle';
+import { useI18n } from 'vue-i18n';
 
-import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
-import BaseCard from '@/components/Base/BaseCard/BaseCard.vue'
-import BaseInput from '@/components/Base/BaseInput/BaseInput.vue'
-import BaseSelect from '@/components/Base/BaseSelect/BaseSelect.vue'
+import BaseButton from '@/components/Base/BaseButton/BaseButton.vue';
+import BaseCard from '@/components/Base/BaseCard/BaseCard.vue';
+import BaseInput from '@/components/Base/BaseInput/BaseInput.vue';
+import BaseSelect from '@/components/Base/BaseSelect/BaseSelect.vue';
 
 const props = defineProps<{
-  filters: VehicleFilters
-}>()
+  filters: VehicleFilters;
+}>();
 
 const emit = defineEmits<{
-  filter: [filters: VehicleFilters]
-}>()
+  filter: [filters: VehicleFilters];
+}>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 
-const localFilters = ref<VehicleFilters>({ ...props.filters })
+const localFilters = ref<VehicleFilters>({ ...props.filters });
 
 // Synchronizuj z props (gdy zmienią się z zewnątrz)
 watch(
   () => props.filters,
   (newFilters) => {
-    localFilters.value = { ...newFilters }
+    localFilters.value = { ...newFilters };
   },
   { deep: true },
-)
+);
 
 const vehicleTypes = computed(() => {
   return [
     { value: 'suv', label: t('vehicle.filters.suv') },
     { value: 'sedan', label: t('vehicle.filters.sedan') },
-  ]
-})
+  ];
+});
 
 const vehicleDrives = computed(() => {
   return [
@@ -42,12 +42,12 @@ const vehicleDrives = computed(() => {
     { value: 'hybrid', label: t('vehicle.filters.hybrid') },
     { value: 'petrol', label: t('vehicle.filters.petrol') },
     { value: 'diesel', label: t('vehicle.filters.diesel') },
-  ]
-})
+  ];
+});
 
 const handleFilter = () => {
-  emit('filter', { ...localFilters.value })
-}
+  emit('filter', { ...localFilters.value });
+};
 </script>
 
 <template>

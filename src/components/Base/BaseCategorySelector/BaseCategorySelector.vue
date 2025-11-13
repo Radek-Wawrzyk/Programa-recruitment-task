@@ -1,54 +1,54 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 interface CategoryOption {
-  id: string | number
-  label: string
-  value?: string | number
+  id: string | number;
+  label: string;
+  value?: string | number;
 }
 
 const props = withDefaults(
   defineProps<{
-    modelValue: string | number | null | (string | number)[]
-    options: CategoryOption[]
-    label?: string
-    multiple?: boolean
+    modelValue: string | number | null | (string | number)[];
+    options: CategoryOption[];
+    label?: string;
+    multiple?: boolean;
   }>(),
   {
     label: undefined,
     multiple: false,
   },
-)
+);
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string | number | null | (string | number)[]]
-}>()
+  'update:modelValue': [value: string | number | null | (string | number)[]];
+}>();
 
 const selectedValue = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
-})
+});
 
 const isSelected = (optionId: string | number) => {
   if (props.multiple) {
-    const selected = selectedValue.value as (string | number)[]
-    return Array.isArray(selected) && selected.includes(optionId)
+    const selected = selectedValue.value as (string | number)[];
+    return Array.isArray(selected) && selected.includes(optionId);
   }
 
-  return selectedValue.value === optionId
-}
+  return selectedValue.value === optionId;
+};
 
 const selectOption = (optionId: string | number) => {
   if (props.multiple) {
-    const current = (selectedValue.value as (string | number)[]) || []
+    const current = (selectedValue.value as (string | number)[]) || [];
     const newValue = current.includes(optionId)
       ? current.filter((id) => id !== optionId)
-      : [...current, optionId]
-    selectedValue.value = newValue.length > 0 ? newValue : null
+      : [...current, optionId];
+    selectedValue.value = newValue.length > 0 ? newValue : null;
   } else {
-    selectedValue.value = selectedValue.value === optionId ? null : optionId
+    selectedValue.value = selectedValue.value === optionId ? null : optionId;
   }
-}
+};
 </script>
 
 <template>

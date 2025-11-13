@@ -1,14 +1,14 @@
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n';
 
 const languagesMap = {
   pl: {
     currency: 'PLN',
     fullLocale: 'pl-PL',
   },
-} as const
+} as const;
 
 const usePrice = () => {
-  const { locale } = useI18n()
+  const { locale } = useI18n();
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat(
@@ -17,10 +17,10 @@ const usePrice = () => {
         style: 'currency',
         currency: languagesMap[locale.value as keyof typeof languagesMap].currency,
       },
-    ).format(price)
-  }
+    ).format(price);
+  };
 
-  return { formatPrice }
-}
+  return { formatPrice };
+};
 
-export { usePrice }
+export { usePrice };

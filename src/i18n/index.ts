@@ -1,5 +1,5 @@
-import { createI18n } from 'vue-i18n'
-import pl from './locales/pl.json'
+import { createI18n } from 'vue-i18n';
+import pl from './locales/pl.json';
 
 const i18n = createI18n({
   legacy: false,
@@ -8,6 +8,6 @@ const i18n = createI18n({
   messages: {
     pl,
   },
-})
+});
 
-export default i18n
+export default i18n;

@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { inject, computed, type Ref } from 'vue'
+import { inject, computed, type Ref } from 'vue';
 
 interface AccordionContext {
-  openItems: Ref<Set<string>>
-  toggleItem: (id: string) => void
-  isItemOpen: (id: string) => boolean
+  openItems: Ref<Set<string>>;
+  toggleItem: (id: string) => void;
+  isItemOpen: (id: string) => boolean;
 }
 
 const props = defineProps<{
-  id: string
-  title: string
-  content: string
-}>()
+  id: string;
+  title: string;
+  content: string;
+}>();
 
-const accordion = inject<AccordionContext>('accordion')
+const accordion = inject<AccordionContext>('accordion');
 
-const isOpen = computed(() => accordion?.isItemOpen(props.id) || false)
+const isOpen = computed(() => accordion?.isItemOpen(props.id) || false);
 
 const handleToggle = () => {
-  accordion?.toggleItem(props.id)
-}
+  accordion?.toggleItem(props.id);
+};
 </script>
 
 <template>

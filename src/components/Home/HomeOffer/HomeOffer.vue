@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { useVehivles } from '@/composables/useVehicles'
-import type { VehicleFilters as VehicleFiltersType } from '@/types/Vehicle'
+import { onMounted } from 'vue';
+import { useVehivles } from '@/composables/useVehicles';
+import type { VehicleFilters as VehicleFiltersType } from '@/types/Vehicle';
 
-import VehicleFilters from '@/components/Vehicle/VehicleFilters/VehicleFilters.vue'
-import VehicleList from '@/components/Vehicle/VehicleList/VehicleList.vue'
+import VehicleFilters from '@/components/Vehicle/VehicleFilters/VehicleFilters.vue';
+import VehicleList from '@/components/Vehicle/VehicleList/VehicleList.vue';
 
-const { fetchVehicles, filteredVehicles, setFilters, filters, isLoading } = useVehivles()
+const { fetchVehicles, filteredVehicles, setFilters, filters, isLoading } = useVehivles();
 
 const handleFilter = (newFilters: VehicleFiltersType) => {
-  setFilters(newFilters)
-}
+  setFilters(newFilters);
+};
 
 onMounted(async () => {
-  await fetchVehicles()
-})
+  await fetchVehicles();
+});
 </script>
 
 <template>
