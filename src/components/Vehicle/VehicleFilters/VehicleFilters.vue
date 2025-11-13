@@ -8,11 +8,9 @@ import BaseCard from '@/components/Base/BaseCard/BaseCard.vue'
 import BaseInput from '@/components/Base/BaseInput/BaseInput.vue'
 import BaseSelect from '@/components/Base/BaseSelect/BaseSelect.vue'
 
-interface Props {
+const props = defineProps<{
   filters: VehicleFilters
-}
-
-const props = defineProps<Props>()
+}>()
 
 const emit = defineEmits<{
   filter: [filters: VehicleFilters]

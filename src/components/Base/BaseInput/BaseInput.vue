@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import { getUUID } from '@/utils'
 
-interface Props {
-  id?: string
-  label?: string
-  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'
-  placeholder?: string
-  modelValue?: string | number
-  disabled?: boolean
-  required?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  type: 'text',
-  disabled: false,
-  required: false,
-})
+const props = withDefaults(
+  defineProps<{
+    id?: string
+    label?: string
+    type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'
+    placeholder?: string
+    modelValue?: string | number
+    disabled?: boolean
+    required?: boolean
+  }>(),
+  {
+    type: 'text',
+    disabled: false,
+    required: false,
+  },
+)
 
 const emit = defineEmits<{
   'update:modelValue': [value: string | number]

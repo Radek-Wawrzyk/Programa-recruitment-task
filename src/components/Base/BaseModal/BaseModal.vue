@@ -21,14 +21,14 @@ const props = withDefaults(
   },
 )
 
-const { t } = useI18n()
-
 const emit = defineEmits<{
   'update:modelValue': [value: boolean]
   close: []
   cancel: []
   confirm: []
 }>()
+
+const { t } = useI18n()
 
 const close = () => {
   emit('update:modelValue', false)
@@ -56,11 +56,11 @@ const handleEscape = (event: KeyboardEvent) => {
   }
 }
 
-const getCancelLabel = computed(() => {
+const cancelText = computed(() => {
   return props.cancelLabel || t('common.cancel')
 })
 
-const getConfirmLabel = computed(() => {
+const confirmText = computed(() => {
   return props.confirmLabel || t('common.confirm')
 })
 
@@ -121,11 +121,11 @@ onUnmounted(() => {
 
           <footer v-if="showFooter" class="base-modal__footer">
             <BaseButton variant="tertiary" @click="handleCancel">
-              {{ getCancelLabel }}
+              {{ cancelText }}
             </BaseButton>
 
             <BaseButton variant="primary" @click="handleConfirm">
-              {{ getConfirmLabel }}
+              {{ confirmText }}
             </BaseButton>
           </footer>
         </div>

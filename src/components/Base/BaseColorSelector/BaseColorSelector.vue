@@ -1,20 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface ColorOption {
-  name: string
-  code: string
-}
-
-interface Props {
-  modelValue: string | null
-  options: ColorOption[]
-  label?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  label: 'Kolor',
-})
+const props = withDefaults(
+  defineProps<{
+    modelValue: string | null
+    options: { name: string; code: string }[]
+    label?: string
+  }>(),
+  {
+    label: 'Kolor',
+  },
+)
 
 const emit = defineEmits<{
   'update:modelValue': [value: string | null]

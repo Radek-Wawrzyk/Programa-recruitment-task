@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import BaseButton from '@/components/Base/BaseButton/BaseButton.vue'
+
 import type { Vehicle } from '@/types/Vehicle'
 import { computed } from 'vue'
+import { usePrice } from '@/composables/usePrice'
 
-interface Props {
+const props = defineProps<{
   vehicle: Vehicle
-}
-
-const props = defineProps<Props>()
+}>()
 
 const emit = defineEmits<{
   'check-details': [vehicle: Vehicle]
 }>()
 
-const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('pl-PL').format(price)
-}
+const { formatPrice } = usePrice()
 
 const mainImage = computed(() => {
   return props.vehicle.images.find((image) => image.type === 'main')?.url
@@ -35,7 +33,7 @@ const handleCheckClick = () => {
     <div class="vehicle-card__content">
       <h3 class="vehicle-card__model">{{ vehicle.model }}</h3>
       <p class="vehicle-card__price">
-        {{ $t('vehicle.from') }} {{ formatPrice(vehicle.priceFrom) }} zł
+        {{ $t('vehicle.from') }} {{ formatPrice(vehicle.priceFrom) }}
       </p>
 
       <div class="vehicle-card__specs-wrapper">

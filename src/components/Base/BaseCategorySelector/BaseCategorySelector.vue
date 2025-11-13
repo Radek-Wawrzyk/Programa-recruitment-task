@@ -7,17 +7,18 @@ interface CategoryOption {
   value?: string | number
 }
 
-interface Props {
-  modelValue: string | number | null | (string | number)[]
-  options: CategoryOption[]
-  label?: string
-  multiple?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  label: 'Opcja',
-  multiple: false,
-})
+const props = withDefaults(
+  defineProps<{
+    modelValue: string | number | null | (string | number)[]
+    options: CategoryOption[]
+    label?: string
+    multiple?: boolean
+  }>(),
+  {
+    label: undefined,
+    multiple: false,
+  },
+)
 
 const emit = defineEmits<{
   'update:modelValue': [value: string | number | null | (string | number)[]]

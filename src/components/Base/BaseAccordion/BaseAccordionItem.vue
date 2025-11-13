@@ -1,30 +1,24 @@
 <script setup lang="ts">
 import { inject, computed, type Ref } from 'vue'
 
-interface Props {
-  id: string
-  title: string
-  content: string
-}
-
 interface AccordionContext {
   openItems: Ref<Set<string>>
   toggleItem: (id: string) => void
   isItemOpen: (id: string) => boolean
 }
 
-const props = defineProps<Props>()
+const props = defineProps<{
+  id: string
+  title: string
+  content: string
+}>()
 
 const accordion = inject<AccordionContext>('accordion')
 
-if (!accordion) {
-  throw new Error('BaseAccordionItem must be used inside BaseAccordion')
-}
-
-const isOpen = computed(() => accordion.isItemOpen(props.id))
+const isOpen = computed(() => accordion?.isItemOpen(props.id) || false)
 
 const handleToggle = () => {
-  accordion.toggleItem(props.id)
+  accordion?.toggleItem(props.id)
 }
 </script>
 

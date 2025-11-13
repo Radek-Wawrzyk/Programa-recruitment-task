@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import type { Vehicle } from '@/types/Vehicle'
 import { useI18n } from 'vue-i18n'
 import { useCacheVehicle } from '@/composables/useCacheVehicle'
+import { usePrice } from '@/composables/usePrice'
 
 import BaseModal from '@/components/Base/BaseModal/BaseModal.vue'
 import BaseCard from '@/components/Base/BaseCard/BaseCard.vue'
@@ -28,6 +29,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const { getVehicleFromCache, saveVehicle } = useCacheVehicle()
+const { formatPrice } = usePrice()
 
 const currentMainImage = ref<string | null>(null)
 const currentThumbnails = ref<string[]>([])
@@ -37,10 +39,6 @@ const activeOffer = ref<ActiveOffer>({
   color: null,
   addons: [],
 })
-
-const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('pl-PL').format(price)
-}
 
 const currentPrice = computed(() => {
   if (!props.vehicle || !activeOffer.value.version) {
@@ -239,7 +237,7 @@ watch(
             <div class="vehicle-details-modal__price">
               <span class="vehicle-details-modal__price-label">{{ $t('vehicle.price') }}</span>
               <span class="vehicle-details-modal__price-value">
-                {{ formatPrice(currentPrice) }} zł
+                {{ formatPrice(currentPrice) }}
               </span>
             </div>
 

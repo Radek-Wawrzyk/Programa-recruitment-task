@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import type { Vehicle } from '@/types/Vehicle'
 import { useI18n } from 'vue-i18n'
+
 import VehicleCard from '@/components/Vehicle/VehicleCard/VehicleCard.vue'
 import VehicleDetailsModal from '@/components/Vehicle/VehicleDetailsModal/VehicleDetailsModal.vue'
 
@@ -15,7 +16,7 @@ const { t } = useI18n()
 const isModalOpen = ref(false)
 const selectedVehicle = ref<Vehicle | null>(null)
 
-const emptyText = computed(() => {
+const fallbackText = computed(() => {
   return props.isLoading ? t('common.loading') : t('vehicle.empty')
 })
 
@@ -46,7 +47,7 @@ const handleCloseModal = () => {
       />
     </TransitionGroup>
 
-    <p class="vehicle-list__empty" v-else>{{ emptyText }}</p>
+    <p class="vehicle-list__empty" v-else>{{ fallbackText }}</p>
   </div>
 
   <VehicleDetailsModal

@@ -2,19 +2,13 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { getUUID } from '@/utils'
 
-export interface SelectOption {
-  value: string | number
-  label: string
-  disabled?: boolean
-}
-
 const props = withDefaults(
   defineProps<{
     id?: string
     label?: string
     placeholder?: string
     modelValue?: string | number
-    options: SelectOption[]
+    options: { value: string | number; label: string; disabled?: boolean }[]
     disabled?: boolean
     required?: boolean
   }>(),
