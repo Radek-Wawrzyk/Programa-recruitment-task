@@ -2,14 +2,20 @@ import type { CachedVehicle, VehicleOffer } from '@/types/Vehicle'
 import { STORAGE_KEYS } from '@/constants/StorageKeys'
 
 const useCacheVehicle = () => {
-  const getVehiclesFromCache = (): CachedVehicle[] => {
+  const getAllVehiclesFromCache = (): CachedVehicle[] => {
     const vehicles = localStorage.getItem(STORAGE_KEYS.VEHICLE_OFFER_DETAILS)
     return vehicles ? JSON.parse(vehicles) : []
   }
 
+  const getVehicleFromCache = (vehicleId: number): VehicleOffer | null => {
+    const vehicles = getAllVehiclesFromCache()
+    const targetVehicle = vehicles.find((vehicle) => vehicle.vehicleId === vehicleId)
+    return targetVehicle ? targetVehicle.offer : null
+  }
+
   const saveVehicle = (vehicleId: number, offer: VehicleOffer) => {
-    const vehicles = getVehiclesFromCache()
-    const existingIndex = vehicles.findIndex((v) => v.vehicleId === vehicleId)
+    const vehicles = getAllVehiclesFromCache()
+    const existingIndex = vehicles.findIndex((vehicle) => vehicle.vehicleId === vehicleId)
 
     if (existingIndex !== -1) vehicles[existingIndex] = { vehicleId, offer }
     else vehicles.push({ vehicleId, offer })
@@ -18,6 +24,7 @@ const useCacheVehicle = () => {
   }
 
   return {
+    getVehicleFromCache,
     saveVehicle,
   }
 }

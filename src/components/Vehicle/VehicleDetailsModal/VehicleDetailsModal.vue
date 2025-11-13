@@ -27,7 +27,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-const { saveVehicle } = useCacheVehicle()
+const { getVehicleFromCache, saveVehicle } = useCacheVehicle()
 
 const currentMainImage = ref<string | null>(null)
 const currentThumbnails = ref<string[]>([])
@@ -148,14 +148,22 @@ const selectImage = (imageUrl: string, thumbnailIndex: number) => {
   }
 }
 
-// INFO: Select default version, color and addons (always first option)
+// INFO: Select default version, color and addons (always first option) or load from cache
 watch(
   () => props.vehicle,
   (vehicle) => {
     if (vehicle) {
-      activeOffer.value.version = vehicle.versions[0]?.name || null
-      activeOffer.value.color = vehicle.colors[0]?.code || null
-      activeOffer.value.addons = []
+      const cachedOffer = getVehicleFromCache(vehicle.id)
+
+      if (cachedOffer) {
+        activeOffer.value.version = cachedOffer.version
+        activeOffer.value.color = cachedOffer.color
+        activeOffer.value.addons = cachedOffer.addons
+      } else {
+        activeOffer.value.version = vehicle.versions[0]?.name || null
+        activeOffer.value.color = vehicle.colors[0]?.code || null
+        activeOffer.value.addons = []
+      }
     }
   },
   { immediate: true },
