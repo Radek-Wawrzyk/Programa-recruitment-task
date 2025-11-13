@@ -50,11 +50,15 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.875rem;
+
+    @media (max-width: 576px) {
+      gap: 0.5rem;
+    }
   }
 
   &__thumbnail {
     width: 100%;
-    height: 120px;
+    height: auto;
     border-radius: var(--border-radius-small);
     cursor: pointer;
     transition: all 0.2s ease;

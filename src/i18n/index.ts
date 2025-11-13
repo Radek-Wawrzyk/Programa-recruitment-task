@@ -8,14 +8,6 @@ const i18n = createI18n({
   messages: {
     pl,
   },
-  numberFormats: {
-    pl: {
-      currency: {
-        style: 'currency',
-        currency: 'PLN',
-      },
-    },
-  },
 })
 
 export default i18n

@@ -49,6 +49,17 @@ interface Vehicle {
   images: VehicleImage[]
 }
 
+interface CachedVehicle {
+  vehicleId: number
+  offer: {
+    model: string
+    version: string
+    color: string
+    addons: string[]
+    price: number
+  }
+}
+
 export type {
   VehicleType,
   VehicleDrive,
@@ -57,4 +68,5 @@ export type {
   VehicleVersion,
   VehicleAddon,
   Vehicle,
+  CachedVehicle,
 }

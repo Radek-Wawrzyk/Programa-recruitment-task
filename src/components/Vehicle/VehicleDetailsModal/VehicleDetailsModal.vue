@@ -2,6 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import type { Vehicle } from '@/types/Vehicle'
 import { useI18n } from 'vue-i18n'
+import { useCacheVehicle } from '@/composables/useCacheVehicle'
 
 import BaseModal from '@/components/Base/BaseModal/BaseModal.vue'
 import BaseCard from '@/components/Base/BaseCard/BaseCard.vue'
@@ -26,6 +27,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const { saveVehicle } = useCacheVehicle()
 
 const currentMainImage = ref<string | null>(null)
 const currentThumbnails = ref<string[]>([])
@@ -121,6 +123,18 @@ const handleClose = () => {
   emit('close')
 }
 
+const handleSaveOffer = () => {
+  if (!props.vehicle) return
+
+  saveVehicle(props.vehicle.id, {
+    model: props.vehicle?.model,
+    version: activeOffer.value.version,
+    color: activeOffer.value.color,
+    addons: activeOffer.value.addons,
+    price: currentPrice.value,
+  })
+}
+
 const selectImage = (imageUrl: string, thumbnailIndex: number) => {
   const previousMainImage =
     currentMainImage.value || props.vehicle?.images.find((image) => image.type === 'main')?.url
@@ -168,6 +182,7 @@ watch(
     @update:model-value="handleClose"
     :confirm-label="$t('vehicle.findDealer')"
     show-footer
+    @confirm="handleSaveOffer"
   >
     <div v-if="vehicle" class="vehicle-details-modal">
       <div class="vehicle-details-modal__content">
@@ -220,7 +235,7 @@ watch(
               </span>
             </div>
 
-            <BaseButton variant="secondary" full-width>{{
+            <BaseButton variant="secondary" full-width @click="handleSaveOffer">{{
               $t('vehicle.findSalesPoint')
             }}</BaseButton>
           </BaseCard>
