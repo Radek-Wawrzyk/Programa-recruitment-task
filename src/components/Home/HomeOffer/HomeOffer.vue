@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useVehivles } from '@/composables/useVehivles'
+import { useVehivles } from '@/composables/useVehicles'
 import type { VehicleFilters as VehicleFiltersType } from '@/types/Vehicle'
 
 import VehicleFilters from '@/components/Vehicle/VehicleFilters/VehicleFilters.vue'
