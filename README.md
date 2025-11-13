@@ -3,21 +3,24 @@
 ## 📋 Table of Contents
 
 1. [Project Description](#project-description)
-2. [Technologies](#technologies)
-3. [Project Structure](#project-structure)
-4. [Installation and Setup](#installation-and-setup)
-5. [Application Architecture](#application-architecture)
-6. [Main Features](#main-features)
-7. [Composables](#composables)
-8. [API and Data](#api-and-data)
-9. [Styling](#styling)
-10. [Internationalization](#internationalization)
+2. [Task Requirements](#task-requirements)
+3. [Technologies](#technologies)
+4. [Project Structure](#project-structure)
+5. [Installation and Setup](#installation-and-setup)
+6. [Application Architecture](#application-architecture)
+7. [Main Features](#main-features)
+8. [Composables](#composables)
+9. [API and Data](#api-and-data)
+10. [Styling](#styling)
+11. [Internationalization](#internationalization)
 
 ---
 
 ## 📝 Project Description
 
-A web application for browsing and configuring electric and hybrid vehicles. Users can:
+A web application for browsing and configuring electric and hybrid vehicles for the fictional **Voltura** brand. This project was created as a recruitment task based on Figma mockups.
+
+Users can:
 
 - Browse a list of available vehicles
 - Filter vehicles by type, drive type, and price range
@@ -25,6 +28,40 @@ A web application for browsing and configuring electric and hybrid vehicles. Use
 - Select version, color, and additional equipment
 - Save configuration to localStorage
 - View vehicle images with the ability to swap the main image
+
+---
+
+## 📋 Task Requirements
+
+This project was built according to the following requirements:
+
+### Original Requirements:
+
+- **Technologies:** HTML5, CSS, and Bootstrap (for layout and basic components), with JavaScript or a framework (Svelte, React) for logic
+- **Data Source:** Local JSON file (no backend)
+- **Design:** Based on Figma mockups at [Figma Design](https://www.figma.com/design/0erZCITsI66pG54XATDXLo/Untitled?node-id=0-1&p=f)
+
+### Functional Requirements:
+
+1. **Homepage:**
+   - Section "Gama naszych samochodów" (Our Vehicle Range)
+   - Vehicle cards displayed in a grid layout
+   - Filter bar above the grid (vehicle type, drive type, price range)
+   - Real-time grid update when filters change
+
+2. **Vehicle Details Modal:**
+   - Opens when clicking "Sprawdź" (Check) button on vehicle card
+   - Image gallery with main image and thumbnails
+   - Clicking a thumbnail swaps it with the main image
+   - Configuration options: model, version, color, addons, price
+   - Save to localStorage when clicking "Znajdź dealera" (Find dealer) or "Znajdź punkt sprzedaży" (Find sales point)
+
+### Implementation Decisions:
+
+- **Framework:** Vue 3 (Composition API) was chosen instead of React/Svelte for better developer experience and modern reactive patterns
+- **Styling:** Custom SCSS was written instead of Bootstrap to better match the Figma design and create more tailored, maintainable styles
+- **TypeScript:** Added for better type safety and developer experience
+- **Data:** Using `json-server` to simulate a REST API while still working with local JSON data (`db.json`)
 
 ---
 
@@ -46,10 +83,6 @@ A web application for browsing and configuring electric and hybrid vehicles. Use
 - **ESLint** + **Oxlint** - linting
 - **Prettier** - code formatting
 - **vue-tsc** - TypeScript type checking
-
-### Design Decisions:
-
-- **Custom CSS/SCSS** - Custom styles were written instead of using Bootstrap, as it was faster and more efficient to create tailored styles for the specific design requirements
 
 ---
 
@@ -530,16 +563,27 @@ All base components use Vue 3 `v-model`:
 
 ## 🚦 Project Status
 
-✅ **Implemented:**
+✅ **All Task Requirements Implemented:**
 
-- Vehicle browsing
-- Vehicle filtering
-- Details modal with configuration
-- Configuration cache in localStorage
+- ✅ Homepage with "Gama naszych samochodów" section
+- ✅ Vehicle cards in grid layout
+- ✅ Filter bar (vehicle type, drive type, price range)
+- ✅ Real-time grid update on filter changes
+- ✅ Vehicle details modal on "Sprawdź" button click
+- ✅ Image gallery with main image and thumbnails
+- ✅ Image swapping (clicking thumbnail swaps with main image)
+- ✅ Configuration options (version, color, addons)
+- ✅ Dynamic price calculation
+- ✅ Save to localStorage on "Znajdź dealera" / "Znajdź punkt sprzedaży" click
+- ✅ Data loaded from local JSON file (`db.json`)
+
+### Additional Features:
+
 - Responsive design
 - Internationalization (PL)
-- Price formatting
-- Image swapping in gallery
+- TypeScript for type safety
+- Component-based architecture
+- Configuration cache restoration
 
 ---
 
